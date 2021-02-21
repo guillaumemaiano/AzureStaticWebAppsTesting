@@ -1,7 +1,11 @@
 
+$darkGray: #33363b;
+$golden: rgb(255,242,181);
+
 body {
   margin: 0pt;
   font-family: Lato, Arial, sans-serif;
+  background-color: lightgrey;
 }
 
 .attention {
@@ -10,8 +14,7 @@ body {
 }
 
 header {
-  text-align: center;
-  background-color: #33363b;
+  background-color: $darkGray;
   font-family: Underground, Arial, sans-serif;
 	text-transform: bold;
 	font-size: 1rem;
@@ -19,6 +22,64 @@ header {
 	text-align: center;
 	letter-spacing: .5rem;
   border-radius: 0pt 0pt 10pt 10pt;
+}
+
+.main {
+  padding-top: 3pt;
+  font-family: Underground, Arial, sans-serif;
+	font-size: 1rem;
+	color: $darkGray;
+	text-align: center;
+  background-color: #aab0b9;
+  width: 60%;
+  margin: 0 auto;
+  border-radius: 3pt;
+}
+
+.giphy-embed {
+  border-radius: 3pt;
+}
+
+footer {
+  position: absolute;
+  bottom: 0pt;
+  width: 100%;
+  text-align: center;
+  background-color: $darkGray;
+  font-family: Underground, Arial, sans-serif;
+	font-size: 1rem;
+	color: $golden;
+	text-align: center;
+	letter-spacing: .5rem;
+  border-radius: 10pt 10pt 0pt 0pt;
+  ul {
+    list-style-type: none;
+    padding:0;
+    overflow: hidden;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    li {
+      margin: auto;
+      padding:5px;
+      float: left;
+      a {
+        border: 5pt;
+        padding: 2pt;
+        border-radius: 5pt 5pt 5pt 5pt;
+        background-color: #bdd4e7;
+        text-decoration: none;
+        color: $darkGray;
+      }
+
+      a:hover {
+        border: 1pt solid whitesmoke;        
+        padding: 2pt;
+        color:lightgrey;
+        background-color: $darkGray;
+      }
+    }
+  }
 }
 
 .plastic {
