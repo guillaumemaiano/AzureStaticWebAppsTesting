@@ -22,8 +22,15 @@ steps:
 - script: npm install -g sass
   displayName: 'npm install sass'
 
-- script: sass scss:css
+- script: sass scss:assets/css
   displayName: 'npm compile scss'
+
+- script: npm install -g typescript
+  displayName: 'npm install typescript'
+
+# TSC should pick the tsconfig options up
+- script: tsc
+  displayName: 'npm compile typescript'
 
 - task: ArchiveFiles@2
   inputs:
