@@ -1,6 +1,7 @@
 
 $darkGray: #33363b;
 $golden: rgb(255,242,181);
+$non-skeleton-size: 160%;
 
 body {
   margin: 0pt;
@@ -17,7 +18,7 @@ header {
   background-color: $darkGray;
   font-family: Underground, Arial, sans-serif;
 	text-transform: bold;
-	font-size: 1rem;
+  font-size: $non-skeleton-size;
 	color: rgb(255,242,181);
 	text-align: center;
 	letter-spacing: .5rem;
@@ -47,7 +48,7 @@ footer {
   text-align: center;
   background-color: $darkGray;
   font-family: Underground, Arial, sans-serif;
-	font-size: 1rem;
+  font-size: $non-skeleton-size;
 	color: $golden;
 	text-align: center;
 	letter-spacing: .5rem;
