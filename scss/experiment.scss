@@ -79,6 +79,10 @@ footer {
         background-color: $darkGray;
       }
     }
+    li:last-child {
+      right: 5pt;
+      position: absolute;
+    }
   }
 }
 
