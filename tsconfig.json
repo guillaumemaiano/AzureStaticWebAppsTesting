@@ -4,5 +4,6 @@
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "assets/js"
-  }
+  },
+  "include": ["typescript/**/*"]
 }
