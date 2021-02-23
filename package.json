@@ -1,0 +1,29 @@
+{
+  "name": "azurestaticwebappstesting",
+  "version": "1.0.0",
+  "description": "Basic package.json facilitates Azure deployment of static website",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"No test needed for now\" && exit 1",
+    "build": "npm run compile-typescript && npm run compile-sass && npm run copy && npm run prepare-deploy",
+    "compile-sass": "sass scss:assets/css",
+    "compile-typescript": "tsc",
+    "copy": "copyfiles -u 0 \"./**/*.{htm,html}\" \"./build\"",
+    "prepare-deploy": "cp -r assets build/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guillaumemaiano/AzureStaticWebAppsTesting.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guillaumemaiano/AzureStaticWebAppsTesting/issues"
+  },
+  "homepage": "https://github.com/guillaumemaiano/AzureStaticWebAppsTesting#readme",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "sass": "^1.32.8",
+    "typescript": "^4.1.5"
+  }
+}
