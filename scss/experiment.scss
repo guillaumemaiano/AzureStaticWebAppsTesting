@@ -2,6 +2,7 @@
 $darkGray: #33363b;
 $golden: rgb(255,242,181);
 $non-skeleton-size: 160%;
+$pill-width: 10pt;
 
 body {
   margin: 0pt;
@@ -150,7 +151,7 @@ p {
   animation-play-state: running; 
   position: relative;
   height:5pt;
-  width: 10pt;
+  width: $pill-width;
 }
 // effects
 
@@ -185,6 +186,6 @@ p {
 
   100% {
 	opacity:1.0;
-        right:0pt auto;
+        right: $pill-width;
   }
 }
