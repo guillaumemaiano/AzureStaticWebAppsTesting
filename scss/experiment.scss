@@ -41,12 +41,13 @@ header {
   border-radius: 3pt;
 }
 
-@media screen and (max-width: 767px) {
+// Large iPhones are 1242 px wide
+@media screen and (max-width: 1242px) {
   footer {
     font-size: inherit;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1243px) {
   footer {
     font-size: $non-skeleton-size;
   }
@@ -58,7 +59,7 @@ footer {
   width: 100%;
   text-align: center;
   background-color: $darkGray;
-  font-family: Underground, Arial, sans-serif
+  font-family: Underground, Arial, sans-serif;
 	color: $golden;
 	text-align: center;
 	letter-spacing: .5rem;
