@@ -8,7 +8,7 @@
     "build": "npm run compile-typescript && npm run compile-sass && npm run copy && npm run prepare-deploy",
     "compile-sass": "sass scss:assets/css",
     "compile-typescript": "tsc",
-    "copy": "copyfiles -u 0 \"./src/**/*.{htm,html}\" \"./build\" && copyfiles -u 0 \"./*.{htm,html}\" \"./build\"",
+    "copy": "copyfiles -u 1 \"./src/**/*.{htm,html}\" \"./build\" && copyfiles -u 0 \"./*.{htm,html}\" \"./build\"",
     "prepare-deploy": "cp -r assets ./build/ && cp routes.json ./build/"
   },
   "repository": {
