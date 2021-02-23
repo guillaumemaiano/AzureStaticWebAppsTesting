@@ -176,16 +176,20 @@ p {
 
 @keyframes cylon {
   0% {
-  	opacity:1.0;
+        opacity:1.0;
         left: 0pt;
+        right:100%;
   }
 
   50% {
-  	opacity:0.5;
+        opacity:0.5;
   }
 
   100% {
-	opacity:1.0;
-        left: calc(100% - $pill-width);
+        opacity:1.0;
+        right: 0pt;
+// Caannot get calc to work on safari???
+        left: 90%;//calc(100% - $pill-width);
   }
 }
+
