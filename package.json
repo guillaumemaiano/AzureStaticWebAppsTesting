@@ -9,7 +9,7 @@
     "compile-sass": "sass scss:assets/css",
     "compile-typescript": "tsc",
     "copy": "copyfiles -u 0 \"./**/*.{htm,html}\" \"./build\"",
-    "prepare-deploy": "cp -r assets build/ && cp routes.json build/"
+    "prepare-deploy": "cp -r assets ./build/ && cp routes.json ./build/"
   },
   "repository": {
     "type": "git",
