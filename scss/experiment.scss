@@ -41,14 +41,24 @@ header {
   border-radius: 3pt;
 }
 
+@media screen and (max-width: 767px) {
+  footer {
+    font-size: inherit;
+  }
+}
+@media screen and (min-width: 768px) {
+  footer {
+    font-size: $non-skeleton-size;
+  }
+}
+
 footer {
   position: absolute;
   bottom: 0pt;
   width: 100%;
   text-align: center;
   background-color: $darkGray;
-  font-family: Underground, Arial, sans-serif;
-  font-size: $non-skeleton-size;
+  font-family: Underground, Arial, sans-serif
 	color: $golden;
 	text-align: center;
 	letter-spacing: .5rem;
