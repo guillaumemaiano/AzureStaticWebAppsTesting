@@ -6,6 +6,8 @@ $pill-width: 10pt;
 // this is messy
 $footer-height: 51pt;
 $footer-height-mobile: 36pt;
+$short-animation: 3s;
+$medium-animation: 5s;
 
 // displaying on phones AND very large screens is still pretty messed up, even for such a simple site
 html {
@@ -53,7 +55,7 @@ header {
   position: relative;
 }
 .expand {
-  animation-duration: 5s;
+  animation-duration: $short-animation;
   animation-name: expand;
   animation-timing-function: ease-in-out; 
   animation-delay: 0s;
@@ -182,7 +184,7 @@ footer {
 .lightball {
   border-radius: 5pt;
   background-color: #32b1e4;
-  animation-duration: 5s;
+  animation-duration: $medium-animation;
   animation-name: cylon;
   animation-timing-function: ease-in-out; 
   animation-delay: 0s;
@@ -204,7 +206,7 @@ footer {
 // animations
 @keyframes expand {
   from {
-    opacity: 0%;
+    opacity: 10%;
     height: 0%;
   }
 
