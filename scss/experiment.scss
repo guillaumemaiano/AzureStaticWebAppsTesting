@@ -5,6 +5,7 @@ $non-skeleton-size: 160%;
 $pill-width: 10pt;
 // this is messy
 $footer-height: 51pt;
+$footer-height-mobile: 36pt;
 
 // displaying on phones AND very large screens is still pretty messed up, even for such a simple site
 html {
@@ -46,10 +47,6 @@ header {
   min-height: 100%;
   position: relative;
 }
-.page-content {
-  height: 90%;
-  //bottom: $footer-height;
-}
 
 .main {
   padding-top: 3pt;
@@ -71,11 +68,19 @@ header {
 @media screen and (max-width: 1242px) {
   footer {
     font-size: inherit;
+    height: $footer-height;
+  }
+  .page-content {
+    bottom: $footer-height;
   }
 }
 @media screen and (min-width: 1243px) {
   footer {
     font-size: $non-skeleton-size;
+    height: $footer-height-mobile;
+  }
+  .page-content {
+    bottom: $footer-height-mobile;
   }
 }
 
