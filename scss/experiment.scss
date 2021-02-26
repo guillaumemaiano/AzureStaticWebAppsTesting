@@ -4,10 +4,23 @@ $golden: rgb(255,242,181);
 $non-skeleton-size: 160%;
 $pill-width: 10pt;
 
+// displaying on phones AND very large screens is still pretty messed up, even for such a simple site
+html {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
 body {
-  margin: 0pt;
   font-family: Lato, Arial, sans-serif;
   background-color: lightgrey;
+  width: 100%;
+  display: table-cell;
+}
+
+html, body {
+  margin: 0pt;
+  padding: 0;
 }
 
 .attention {
@@ -24,6 +37,12 @@ header {
 	text-align: center;
 	letter-spacing: .5rem;
   border-radius: 0pt 0pt 10pt 10pt;
+}
+
+// small screens and large screen + old browsers: we need a hack based on a "body container" to keep our footer at the bottom
+.body {
+  min-height: 100%;
+  position: relative;
 }
 
 .main {
@@ -55,7 +74,7 @@ header {
 }
 
 footer {
-  position: relative;
+  position: absolute;
   bottom: 0pt;
   width: 100%;
   text-align: center;
