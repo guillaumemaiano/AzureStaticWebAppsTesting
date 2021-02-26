@@ -40,6 +40,11 @@ header {
 	text-align: center;
 	letter-spacing: .5rem;
   border-radius: 0pt 0pt 10pt 10pt;
+
+  p {
+    animation-duration: 3s;
+    animation-name: slidein;
+  }
 }
 
 // small screens and large screen + old browsers: we need a hack based on a "body container" to keep our footer at the bottom
@@ -162,11 +167,6 @@ footer {
 .silver {
   color: silver;
   letter-spacing: initial;
-}
-
-p {
-  animation-duration: 3s;
-  animation-name: slidein;
 }
 
 .lightball {
