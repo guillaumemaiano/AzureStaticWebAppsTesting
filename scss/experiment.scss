@@ -3,6 +3,8 @@ $darkGray: #33363b;
 $golden: rgb(255,242,181);
 $non-skeleton-size: 160%;
 $pill-width: 10pt;
+// this is messy
+$footer-height: 51pt;
 
 // displaying on phones AND very large screens is still pretty messed up, even for such a simple site
 html {
@@ -43,6 +45,10 @@ header {
 .body {
   min-height: 100%;
   position: relative;
+}
+.page-content {
+  height: 90%;
+  //bottom: $footer-height;
 }
 
 .main {
