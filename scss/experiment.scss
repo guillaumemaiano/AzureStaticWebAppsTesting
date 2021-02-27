@@ -80,7 +80,10 @@ header {
 .giphy-embed {
   border-radius: 3pt;
 }
-
+.page-content {
+  top: 0pt;
+  margin-top: 10pt;
+}
 // Large iPhones are 1242 px wide
 @media screen and (max-width: 1242px) {
   footer {
