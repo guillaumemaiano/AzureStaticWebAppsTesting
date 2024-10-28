@@ -25,3 +25,8 @@ Starting a rework of that old website.
 
     - Background and footer seem broken
     - Glass effect doesn't work well (or at all)
+
+### Desired features
+
+    - Keep some version of the CSS pong ball in the previous site
+    - Add more cool CSS effects (hover, overlay)
