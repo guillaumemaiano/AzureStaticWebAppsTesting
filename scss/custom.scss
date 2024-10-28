@@ -1,3 +1,4 @@
+@use "sass:color";
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Source+Code+Pro:wght@400;700&family=Roboto:wght@400;500;700&family=Raleway:wght@400;700&display=swap');
 
 $font-plex: 'IBM Plex Sans', sans-serif;
@@ -15,7 +16,10 @@ $color-text: #333;          /* Dark grey for text */
 
 /* Renamed the function to avoid conflict */
 @function rgba-color($color, $alpha) {
-    @return rgba(red($color), green($color), blue($color), $alpha);
+    @return rgba(color.channel($color, "red", $space: rgb),
+                 color.channel($color, "green", $space: rgb),
+                 color.channel($color, "blue", $space: rgb),
+                 $alpha);
 }
 
 h1 {
