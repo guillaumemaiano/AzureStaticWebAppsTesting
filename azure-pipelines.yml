@@ -28,8 +28,11 @@ steps:
 - script: npm install -g typescript
   displayName: 'npm install typescript'
 
+- script: npm install -g terser
+  displayName: 'npm install terser'
+
 # TSC should pick the tsconfig options up
-- script: tsc
+- script: tsc && terser assets/js/custom.js -o assets/js/custom.min.js
   displayName: 'npm compile typescript'
 
 - task: ArchiveFiles@2

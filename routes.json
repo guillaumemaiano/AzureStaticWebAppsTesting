@@ -1,25 +1,25 @@
 {
-    "routes": [
-      {
-        "route": "/admin/*",
-        "allowedRoles": ["administrator"]
-      }
-    ],
-    "platformErrorOverrides": [
-      {
-        "errorType": "NotFound",
-        "serve": "/404.html"
-      },
-      {
-        "errorType": "Unauthenticated",
-        "statusCode": "302",
-        "serve": "/login"
-      }
-    ],
-    "defaultHeaders": {
-      "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
-    },
-    "mimeTypes": {
-        "custom": "text/html"
+  "routes": [
+    {
+      "route": "/admin/*",
+      "allowedRoles": ["administrator"]
     }
+  ],
+  "platformErrorOverrides": [
+    {
+      "errorType": "NotFound",
+      "serve": "/404.html"
+    },
+    {
+      "errorType": "Unauthenticated",
+      "statusCode": "302",
+      "serve": "/login"
+    }
+  ],
+  "defaultHeaders": {
+    "content-security-policy": "default-src 'self'; script-src 'self'; object-src 'none'"
+  },
+  "mimeTypes": {
+    "custom": "text/html"
   }
+}
