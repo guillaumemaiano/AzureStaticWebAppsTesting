@@ -173,7 +173,6 @@ html, body {
 .ui.card .circular-card {
     width: $circular-card-size; /* Set the desired size */
     height: $circular-card-size; /* Set the desired size */
-    border-radius: 50%; /* Circular shape */
     overflow: hidden; /* Hide overflow */
     display: flex; /* Center content */
     align-items: center; /* Center vertically */
@@ -184,13 +183,18 @@ html, body {
     background-color: #4B586E;
 }
 
+.ui.card .circular-card {
+    border-radius: 50% !important; /* Ensures the circular shape is applied */
+}
+
+
 .ui.card .circular-card:hover {
     box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.3); /* Add shadow on hover */
 }
 
-.ui.card>:first-child .circular-card, .ui.cards>.card>:first-child .circular-card {
-    border-radius: 50% !important;
-}
+// .ui.card>:first-child .circular-card, .ui.cards>.card>:first-child .circular-card {
+//     border-radius: 50% !important;
+// }
 
 /* Ensuring the image is circular and centered */
 .ui.card .circular-card img {
