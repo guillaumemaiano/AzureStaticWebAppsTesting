@@ -6,15 +6,20 @@ $font-code: 'Source Code Pro', monospace; // Adjust as needed
 $font-roboto: 'Roboto', sans-serif;
 $font-raleway: 'Raleway', sans-serif;
 
-$color-primary: #1B263B;  /* Deep blue */
-$color-secondary: #4B586E; /* Light blue */
-$color-background: #f1f1f1; /* Light grey */
-$color-contrast: #FFAA00;   /* Warm yellow/orange */
-$color-highlight: #FF6F20;  /* Warm orange */
-$color-text-contrast: #C0392B; /* Deep warm red */
-$color-text: #333;          /* Dark grey for text */
+$color-primary:         #1B263B;  /* Deep blue */
+$color-secondary:       #4B586E;  /* Light blue */
+$color-background:      #f1f1f1;  /* Light grey */
+$color-contrast:        #FFAA00;  /* Warm yellow/orange */
+$color-highlight:       #FF6F20;  /* Warm orange */
+$color-text-contrast:   #C0392B;  /* Deep warm red */
+$color-text:            #333;     /* Dark grey for text */
+$color-details:         #1E90FF;  /* Dodger blue */
+$color-steel:           #4682B4;  /* Steel blue */
+$color-hologram:        #00FFFF;
+$color-electric:        #7DF9FF;
 
-$circular-card-size: 9rem; 
+$circular-card-size:   9rem;
+$circular-badge-size: 15rem;
 
 /* Renamed the function to avoid conflict */
 @function rgba-color($color, $alpha) {
@@ -224,6 +229,13 @@ html, body {
     flex-direction: row;
 }
 
+.certification-badges {
+    position: relative; /* Required for positioning the inner border */
+    padding-bottom: 10px; /* Add padding to create space for the inner border */
+    box-shadow: inset 0 -2pt 0 0 $color-highlight;
+    flex-direction: row;
+}
+
 /* Experimental code */
 .badge-container {
     display: flex;
@@ -231,33 +243,33 @@ html, body {
 }
 
 .circular-badge {
-    width: 100px; /* Adjust size */
-    height: 100px; /* Adjust size */
+    width:  $circular-badge-size; /* Adjust size */
+    height:  $circular-badge-size; /* Adjust size */
     border-radius: 50%; /* Circular shape */
-    border: 2px solid blue; /* Blue border */
+    border: 2px groove $color-electric; /* Blue border */
+    border-image: linear-gradient(to right, $color-electric, $color-hologram) 1;
     display: flex;
     align-items: center; /* Center image vertically */
     justify-content: center; /* Center image horizontally */
     overflow: hidden; /* Hide overflow */
-    margin-right: 20px; /* Space between badge and text box */
 }
 
 .circular-badge img {
-    width: 100%; /* Adjust image size to fill badge */
-    height: auto; /* Maintain aspect ratio */
+    width: $circular-badge-size; /* Adjust image size to fill badge */
+    height: $circular-badge-size; /* Maintain aspect ratio */
 }
 
 .connection-line {
-    width: 2px; /* Width of the line */
-    height: 50px; /* Height of the line */
-    background-color: blue; /* Color of the line */
-    margin-right: 20px; /* Space between line and text box */
+    width: 100%; /* Width of the line */
+    height: 2pt; /* Height of the line */
+    //background: linear-gradient(90deg,  blue, green 40%, red);
+    background: linear-gradient(90deg,  $color-details, $color-electric 40%, $color-hologram);
 }
 
 .text-box {
     background-color: #f1f1f1; /* Background color of the text box */
     padding: 10px; /* Padding inside the text box */
-    border: 1px solid #ccc; /* Optional border for text box */
+    border: 1px solid $color-hologram; /* Optional border for text box */
     border-radius: 5px; /* Rounded corners */
 }
 
