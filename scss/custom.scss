@@ -170,6 +170,10 @@ html, body {
     margin: 1rem; /* Breathing space around cards */
 }
 
+.ui .cards {
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+}
 .ui.card .circular-card {
     width: $circular-card-size; /* Set the desired size */
     height: $circular-card-size; /* Set the desired size */
@@ -218,6 +222,43 @@ html, body {
     padding-bottom: 10px; /* Add padding to create space for the inner border */
     box-shadow: inset 0 -2pt 0 0 $color-text-contrast;
     flex-direction: row;
+}
+
+/* Experimental code */
+.badge-container {
+    display: flex;
+    align-items: center; /* Center vertically */
+}
+
+.circular-badge {
+    width: 100px; /* Adjust size */
+    height: 100px; /* Adjust size */
+    border-radius: 50%; /* Circular shape */
+    border: 2px solid blue; /* Blue border */
+    display: flex;
+    align-items: center; /* Center image vertically */
+    justify-content: center; /* Center image horizontally */
+    overflow: hidden; /* Hide overflow */
+    margin-right: 20px; /* Space between badge and text box */
+}
+
+.circular-badge img {
+    width: 100%; /* Adjust image size to fill badge */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.connection-line {
+    width: 2px; /* Width of the line */
+    height: 50px; /* Height of the line */
+    background-color: blue; /* Color of the line */
+    margin-right: 20px; /* Space between line and text box */
+}
+
+.text-box {
+    background-color: #f1f1f1; /* Background color of the text box */
+    padding: 10px; /* Padding inside the text box */
+    border: 1px solid #ccc; /* Optional border for text box */
+    border-radius: 5px; /* Rounded corners */
 }
 
 /* Add your existing animations */
