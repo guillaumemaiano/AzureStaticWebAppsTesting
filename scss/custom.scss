@@ -9,17 +9,20 @@ $font-raleway: 'Raleway', sans-serif;
 $color-primary:         #1B263B;  /* Deep blue */
 $color-secondary:       #4B586E;  /* Light blue */
 $color-background:      #f1f1f1;  /* Light grey */
+$color-holo-contrast:   #003366;  /* Deep Navy Blue */
 $color-contrast:        #FFAA00;  /* Warm yellow/orange */
 $color-highlight:       #FF6F20;  /* Warm orange */
 $color-text-contrast:   #C0392B;  /* Deep warm red */
 $color-text:            #333;     /* Dark grey for text */
 $color-details:         #1E90FF;  /* Dodger blue */
 $color-steel:           #4682B4;  /* Steel blue */
-$color-hologram:        #00FFFF;
-$color-electric:        #7DF9FF;
+$color-hologram:        #00FFFF;  /* Pure Cyan */
+$color-electric:        #7DF9FF;  /* Electric blue */
+$flash-white:           #FFFFFF;  /* Flash white */
+
 
 $circular-card-size:   9rem;
-$circular-badge-size: 15rem;
+$circular-badge-size:  6rem;
 
 /* Renamed the function to avoid conflict */
 @function rgba-color($color, $alpha) {
@@ -179,6 +182,11 @@ html, body {
     gap: 0.8rem;
     margin-top: 0.5rem;
 }
+
+.ui.card :hover {
+    border-color: $color-electric;
+}
+
 .ui.card .circular-card {
     width: $circular-card-size; /* Set the desired size */
     height: $circular-card-size; /* Set the desired size */
@@ -205,6 +213,12 @@ html, body {
 //     border-radius: 50% !important;
 // }
 
+.ui.card .circular-card a {
+    display: block; /* Make the anchor cover its parent */
+    text-decoration: none; /* Remove underline for styling */
+    color: inherit; /* Inherit color to keep styling consistent */
+}
+
 /* Ensuring the image is circular and centered */
 .ui.card .circular-card img {
     width: 100%; /* Fill the circular card */
@@ -229,9 +243,41 @@ html, body {
     flex-direction: row;
 }
 
+.ui.card a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.ui.card a .circular-card, .ui.card .circular-card {
+    width: $circular-card-size;
+    height: $circular-card-size;
+    border-radius: 50% !important;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease;
+    background-color: #4B586E;
+    margin: 1rem;
+}
+
+.ui.card a .circular-card:hover, .ui.card .circular-card:hover {
+    box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.3);
+}
+
+.ui.card a .content, .ui.card .content {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.ui.card a:hover .content, .ui.card:hover .content {
+    color: $color-electric; // Optional styling for hover effect on the content
+}
+
 .certification-badges {
-    position: relative; /* Required for positioning the inner border */
-    padding-bottom: 10px; /* Add padding to create space for the inner border */
+    position: relative;
+    padding-bottom: 10px;
     box-shadow: inset 0 -2pt 0 0 $color-highlight;
     flex-direction: row;
 }
@@ -240,6 +286,7 @@ html, body {
 .badge-container {
     display: flex;
     align-items: center; /* Center vertically */
+    justify-content: center; /* Center badges horizontally */
 }
 
 .circular-badge {
@@ -247,33 +294,107 @@ html, body {
     height:  $circular-badge-size; /* Adjust size */
     border-radius: 50%; /* Circular shape */
     border: 2px groove $color-electric; /* Blue border */
-    border-image: linear-gradient(to right, $color-electric, $color-hologram) 1;
+    border-image: linear-gradient(to right, $color-electric, $color-hologram);
+    border-image-slice: 1;
     display: flex;
     align-items: center; /* Center image vertically */
-    justify-content: center; /* Center image horizontally */
-    overflow: hidden; /* Hide overflow */
+    justify-content: center;
+    overflow: hidden;
 }
 
 .circular-badge img {
     width: $circular-badge-size; /* Adjust image size to fill badge */
     height: $circular-badge-size; /* Maintain aspect ratio */
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .connection-line {
-    width: 100%; /* Width of the line */
-    height: 2pt; /* Height of the line */
-    //background: linear-gradient(90deg,  blue, green 40%, red);
+    width: 100%;
+    height: 2pt;
     background: linear-gradient(90deg,  $color-details, $color-electric 40%, $color-hologram);
+    background-size: 200% 100%;
+    animation: glow 2s linear infinite;
+}
+
+.text-box::before {
+    content: ""; /* No actual text */
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 0.3125rem solid transparent; /* Adjust width for the triangle */
+    border-right: 0.3125rem solid transparent;
+    border-top: 0.3125rem solid $flash-white; /* Triangle color */
+    position: absolute;
+    top: 0rem;
+    right:0.2rem;
 }
 
 .text-box {
-    background-color: #f1f1f1; /* Background color of the text box */
+    // atmospheric -- linear-gradient(0deg,  $color-details, $color-electric, $color-contrast);
+    background: linear-gradient(0deg,  rgba-color($color-details, 0.5), rgba-color($color-electric, 0.5), $color-hologram);
+    backdrop-filter: blur(3px);
     padding: 10px; /* Padding inside the text box */
-    border: 1px solid $color-hologram; /* Optional border for text box */
-    border-radius: 5px; /* Rounded corners */
+    border: 1px solid $color-hologram;
+    border-radius: 5px;
+    color: #f1f1f1;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 300;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 43rem;
 }
 
-/* Add your existing animations */
+.text-box:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+}
+
+/* Inner div styling (hidden by default) */
+.text-box .inner {
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Smooth transition */
+    //position: absolute;
+    //top: 100%; /* Position below the outer div */
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    color: $color-holo-contrast;
+    visibility: collapse;
+    display: none;
+    max-height: 30rem; /* Set the maximum height */
+    overflow-y: auto; /* Enables vertical scrolling if content exceeds max height */
+}
+
+@media (max-width: 768px) {
+    .text-box {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-box {
+        max-width: 100%; /* For phones, use the full screen width */
+        padding: 15px; /* Optional: add a bit more padding for smaller screens */
+    }
+}
+
+/* Show inner div when outer div is hovered */
+.text-box:hover .inner {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+}
+
+/* scifi animations */
+@keyframes glow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
 @keyframes expand {
     from {
         opacity: 10%;
