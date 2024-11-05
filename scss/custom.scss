@@ -1,10 +1,12 @@
 @use "sass:color";
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Source+Code+Pro:wght@400;700&family=Roboto:wght@400;500;700&family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 $font-plex: 'IBM Plex Sans', sans-serif;
 $font-code: 'Source Code Pro', monospace; // Adjust as needed
 $font-roboto: 'Roboto', sans-serif;
 $font-raleway: 'Raleway', sans-serif;
+$font-orbitron: 'Orbitron', sans-serif;
 
 $color-primary:         #1B263B;  /* Deep blue */
 $color-secondary:       #4B586E;  /* Light blue */
@@ -198,35 +200,27 @@ html, body {
     margin: 1rem; /* Breathing space around cards */
     flex-direction: column;
     background-color: #4B586E;
-}
-
-.ui.card .circular-card {
     border-radius: 50% !important; /* Ensures the circular shape is applied */
+
+    a {
+        display: block; /* Make the anchor cover its parent */
+        text-decoration: none; /* Remove underline for styling */
+        color: inherit; /* Inherit color to keep styling consistent */
+    }
+
+    img {
+        width: 100%; /* Fill the circular card */
+        height: 100%; /* Fill the circular card */
+        object-fit: cover; /* Ensure the image covers the entire circular area */
+        border-radius: 50%; /* Ensure the image is circular */
+        //background-color: #FF6F20; /* Orange background for visibility */
+        background: radial-gradient(circle, $color-highlight 0%, $color-text-contrast 100%);
+    }
 }
 
 
 .ui.card .circular-card:hover {
     box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-}
-
-// .ui.card>:first-child .circular-card, .ui.cards>.card>:first-child .circular-card {
-//     border-radius: 50% !important;
-// }
-
-.ui.card .circular-card a {
-    display: block; /* Make the anchor cover its parent */
-    text-decoration: none; /* Remove underline for styling */
-    color: inherit; /* Inherit color to keep styling consistent */
-}
-
-/* Ensuring the image is circular and centered */
-.ui.card .circular-card img {
-    width: 100%; /* Fill the circular card */
-    height: 100%; /* Fill the circular card */
-    object-fit: cover; /* Ensure the image covers the entire circular area */
-    border-radius: 50%; /* Ensure the image is circular */
-    //background-color: #FF6F20; /* Orange background for visibility */
-    background: radial-gradient(circle, $color-highlight 0%, $color-text-contrast 100%);
 }
 
 .language-badges {
@@ -243,38 +237,6 @@ html, body {
     flex-direction: row;
 }
 
-.ui.card a {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
-
-.ui.card a .circular-card, .ui.card .circular-card {
-    width: $circular-card-size;
-    height: $circular-card-size;
-    border-radius: 50% !important;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: box-shadow 0.3s ease;
-    background-color: #4B586E;
-    margin: 1rem;
-}
-
-.ui.card a .circular-card:hover, .ui.card .circular-card:hover {
-    box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.3);
-}
-
-.ui.card a .content, .ui.card .content {
-    text-align: center;
-    padding: 1rem 0;
-}
-
-.ui.card a:hover .content, .ui.card:hover .content {
-    color: $color-electric; // Optional styling for hover effect on the content
-}
-
 .certification-badges {
     position: relative;
     padding-bottom: 10px;
@@ -285,28 +247,30 @@ html, body {
 /* Experimental code */
 .badge-container {
     display: flex;
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center badges horizontally */
+    align-items: top;
+    justify-content: center;
 }
 
 .circular-badge {
     width:  $circular-badge-size; /* Adjust size */
     height:  $circular-badge-size; /* Adjust size */
     border-radius: 50%; /* Circular shape */
-    border: 2px groove $color-electric; /* Blue border */
-    border-image: linear-gradient(to right, $color-electric, $color-hologram);
+    //border: 2px groove $color-hologram; /* Blue border */
+    border-image: linear-gradient(to right, $color-electric, $color-details);
     border-image-slice: 1;
     display: flex;
     align-items: center; /* Center image vertically */
     justify-content: center;
     overflow: hidden;
-}
-
-.circular-badge img {
-    width: $circular-badge-size; /* Adjust image size to fill badge */
-    height: $circular-badge-size; /* Maintain aspect ratio */
-    border-radius: 50%;
-    object-fit: cover;
+    img {
+        width: 100%; /* Adjust image size to fill badge */
+        height: 100%; /* Maintain aspect ratio */
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    top: 0;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .connection-line {
@@ -315,6 +279,7 @@ html, body {
     background: linear-gradient(90deg,  $color-details, $color-electric 40%, $color-hologram);
     background-size: 200% 100%;
     animation: glow 2s linear infinite;
+    margin-top: calc($circular-badge-size/2);
 }
 
 .text-box::before {
@@ -322,9 +287,9 @@ html, body {
     display: block;
     width: 0;
     height: 0;
-    border-left: 0.3125rem solid transparent; /* Adjust width for the triangle */
-    border-right: 0.3125rem solid transparent;
-    border-top: 0.3125rem solid $flash-white; /* Triangle color */
+    border-left: 0.625rem solid transparent; /* Adjust width for the triangle */
+    border-right: 0.625rem solid transparent;
+    border-top: 0.625rem solid $flash-white; /* Triangle color */
     position: absolute;
     top: 0rem;
     right:0.2rem;
@@ -337,16 +302,24 @@ html, body {
     padding: 10px; /* Padding inside the text box */
     border: 1px solid $color-hologram;
     border-radius: 5px;
-    color: #f1f1f1;
-    font-family: 'Orbitron', sans-serif;
+    color: $color-primary;
+    font-family: $font-orbitron;
     font-weight: 300;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
     transition: transform 0.3s, box-shadow 0.3s;
     max-width: 43rem;
+
+    p {
+        font-family: $font-orbitron;
+        color: #C0392B;
+    }
 }
 
 .text-box:hover {
     box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+    p {
+        font-weight: bold;
+    }
 }
 
 /* Inner div styling (hidden by default) */
@@ -361,6 +334,7 @@ html, body {
     color: $color-holo-contrast;
     visibility: collapse;
     display: none;
+    font-family: $font-roboto;
     max-height: 30rem; /* Set the maximum height */
     overflow-y: auto; /* Enables vertical scrolling if content exceeds max height */
 }
