@@ -22,9 +22,12 @@ $color-hologram:        #00FFFF;  /* Pure Cyan */
 $color-electric:        #7DF9FF;  /* Electric blue */
 $flash-white:           #FFFFFF;  /* Flash white */
 
+$bgImage: url('../images/GEM-background.webp');
+
 
 $circular-card-size:   9rem;
 $circular-badge-size:  6rem;
+$large-border-radius: 0.625rem;
 
 /* Renamed the function to avoid conflict */
 @function rgba-color($color, $alpha) {
@@ -71,7 +74,7 @@ body {
     padding: 0;
     color: $color-text;
     background-color: $color-primary;
-    background: url('../images/GEM-background.webp') no-repeat center center fixed; /* Fixed background */
+    background: $bgImage no-repeat center center fixed; /* Fixed background */
     background-size: cover;
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -330,6 +333,7 @@ html, body {
     //top: 100%; /* Position below the outer div */
     left: 0;
     width: 100%;
+    max-width: 43rem;
     padding: 10px;
     color: $color-holo-contrast;
     visibility: collapse;
@@ -358,6 +362,130 @@ html, body {
     visibility: visible;
     display: block;
 }
+
+
+/* Main content area */
+.hero {
+    position: relative;
+    padding: 2rem;
+    border-radius: 8px;
+    z-index: 1;
+    text-align: center;
+  }
+  
+  /* Duplicate background overlay */
+  .background-overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $bgImage no-repeat center center fixed;
+    background-size: cover;
+    pointer-events: none; /* Make it non-interactive */
+    z-index: 0; /* Above content but below hexagons */
+  }
+
+  .hero-details {
+    z-index: 1;
+    position: relative;
+  }
+
+  .hero-shortcard-container {
+    background-color: $color-primary;  /* Black background */
+    border: 2px solid $color-electric;   /* Thin blue border */
+    padding: 1em;             /* 1em padding inside the container */
+    width: 90%;               /* Fit 80% of the zone it's in */
+    margin: 2em auto 0 auto; 
+    box-sizing: border-box;   /* Ensure padding and border are included in the width */
+    border-radius: $large-border-radius;
+    display:flex;
+    flex-direction: row;
+    gap: clamp(10%, 20%, 20%);
+  }
+
+  .hero-shortcard {
+    //z-index: 1;
+    left: 50%;
+    top: 2rem;
+    width: 40%;
+    max-width: 45%;
+    max-width: 35rem;
+    height: 19rem;
+    padding: 20px;
+    background-color: $color-primary;
+    border: 2px solid $color-electric;
+    border-radius: $large-border-radius;
+    box-shadow: 0 0 15px $color-electric, inset 0 0 10px $color-electric;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;       /* Break long words into the next line */
+    overflow-wrap: break-word;   /* Alternative property for compatibility */
+    white-space: normal;         /* Allow text to wrap */
+}
+
+.hero-shortcard img, .hero-shortcard span {
+    max-width: 100%; /* Constrain images or spans to the container's width */
+}
+
+.hero-shortcard-container .secondary {
+    max-width: 50%;
+    max-width: 35rem;
+}
+
+.hero-shortcard .title-box {
+    width: 60%; /* Title occupies 60% of the content box width */
+    background-color: #00ffff; /* Tron neon blue */
+    color: #0d0d0d; /* Contrast text color */
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5pt;
+    font-size: 1rem;
+    //position: absolute;
+    top: 0; /* Align with the top border of the content box */
+    left: 20%; /* Centered horizontally */
+    transform: translateY(-50%); /* Ensure the text is half on and half off the content box */
+    display: flex;
+    align-items: center; /* Vertically center text inside the title box */
+    justify-content: center;
+    box-shadow: 0 0 10px #00ffff, inset 0 0 5px #00ffff; /* Tron glow for title box */
+    font: $font-roboto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;   
+}
+
+.shortcard-content {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #00ffff; /* Tron neon text */
+    text-shadow: 0 0 5px #00ffff; /* Tron glow for text */
+    font: $font-orbitron;
+}
+
+.hero-shortcard .shortcard-content {
+    margin-top: 20px;
+}
+
+  /* Hexagon cutouts */
+  .hexagon {
+    position: absolute;
+    width: 7rem;
+    height: 7rem;
+    //background: inherit;
+    clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+    pointer-events: none;
+    z-index: 2;
+    border-color: #C0392B;
+  }
+  
+  /* Positioning the hexagons. Flat-side: 4.04rem  - h=s*sqrt(3)*/
+  .hexagon:nth-child(1) { top: 1rem; left: 1rem;   }
+  .hexagon:nth-child(2) { top: 3.5rem; left: 15rem;}
+  .hexagon:nth-child(3) { top: 1rem; left: 9.75rem;   }
+  .hexagon:nth-child(4) { top: 14rem; left: 20rem; }
 
 /* scifi animations */
 @keyframes glow {

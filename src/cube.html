@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive 3D Cube</title>
+  <style>
+    /* CSS Styles */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #1B263B;
+      color: #FFF;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4B586E;
+      color: #FFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #FF6F20;
+    }
+
+    .scene {
+      width: 200px;
+      height: 200px;
+      perspective: 1000px; /* Perspective for 3D effect */
+    }
+
+    .cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d; /* Ensures child faces render in 3D */
+      transform: translateZ(0);
+      transition: transform 1s ease; /* Smooth animation */
+    }
+
+    .face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      backface-visibility: hidden; /* Hides the back side when flipped */
+    }
+
+    .front  { transform: translateZ(100px); }
+    .back   { transform: translateZ(-100px) rotateY(180deg); }
+    .right  { transform: rotateY(90deg) translateZ(100px); }
+    .left   { transform: rotateY(-90deg) translateZ(100px); }
+    .top    { transform: rotateX(90deg) translateZ(100px); }
+    .bottom { transform: rotateX(-90deg) translateZ(100px); }
+  </style>
+</head>
+<body>
+  <!-- Cube and Button -->
+  <div class="scene">
+    <div class="cube">
+      <div class="face front">WebGL is a JavaScript API for rendering 3D graphics.</div>
+      <div class="face back">CSS 3D transforms let you create lightweight 3D effects.</div>
+      <div class="face right">Three.js simplifies WebGL development for 3D apps.</div>
+      <div class="face left">3D enhances user experiences in games, VR, and visualizations.</div>
+      <div class="face top">Perspective is crucial for creating a realistic 3D effect.</div>
+      <div class="face bottom">Click "info" to hide the cube and return to the page.</div>
+    </div>
+  </div>
+
+  <button id="info-button">Info</button>
+
+  <script>
+    /* JavaScript */
+    const cube = document.querySelector('.cube');
+    const infoButton = document.getElementById('info-button');
+
+    // States for cube rotation
+    let currentFace = 0;
+    const faces = [
+      { transform: 'translateZ(0) rotateY(0deg)' }, // Front
+      { transform: 'translateZ(0) rotateY(180deg)' }, // Back
+      { transform: 'translateZ(0) rotateY(-90deg)' }, // Right
+      { transform: 'translateZ(0) rotateY(90deg)' }, // Left
+      { transform: 'translateZ(0) rotateX(-90deg)' }, // Top
+      { transform: 'translateZ(-500px)' }, // Bottom (hide cube)
+    ];
+
+    // Button interaction to rotate cube to the "Info" hiding state
+    infoButton.addEventListener('click', () => {
+      // Rotate through faces until the last one (hide)
+      if (currentFace < faces.length - 1) {
+        currentFace++;
+      } else {
+        currentFace = 0; // Reset to the first face
+      }
+      cube.style.transform = faces[currentFace].transform;
+    });
+  </script>
+</body>
+</html>

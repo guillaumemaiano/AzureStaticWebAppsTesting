@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tron Style Aligned Title Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0d0d0d; /* Tron dark background */
+            margin: 0;
+        }
+
+        .content-box {
+            width: 300px;
+            height: 300px; /* Ensure the box is perfectly square */
+            padding: 20px;
+            background-color: #1a1a1a; /* Tron dark panel */
+            border: 2px solid #00ffff; /* Tron neon border */
+            border-radius: 10px;
+            position: relative; /* Needed for positioning the title-box */
+            box-shadow: 0 0 15px #00ffff, inset 0 0 10px #00ffff; /* Tron glow effect */
+        }
+
+        .title-box {
+            width: 60%; /* Title occupies 60% of the content box width */
+            background-color: #00ffff; /* Tron neon blue */
+            color: #0d0d0d; /* Contrast text color */
+            text-align: center;
+            padding: 5px 10px;
+            border-radius: 5pt;
+            font-size: 1rem;
+            position: absolute;
+            top: 0; /* Align with the top border of the content box */
+            left: 20%; /* Centered horizontally */
+            transform: translateY(-50%); /* Ensure the text is half on and half off the content box */
+            display: flex;
+            align-items: center; /* Vertically center text inside the title box */
+            justify-content: center;
+            box-shadow: 0 0 10px #00ffff, inset 0 0 5px #00ffff; /* Tron glow for title box */
+        }
+
+        .content {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #00ffff; /* Tron neon text */
+            text-shadow: 0 0 5px #00ffff; /* Tron glow for text */
+        }
+    </style>
+</head>
+<body>
+    <div class="content-box">
+        <div class="title-box">My Title</div>
+        <div class="content">
+            This is the content of the box. It now features Tron-style colors with a neon blue glow, perfectly square dimensions, and a futuristic aesthetic.
+        </div>
+    </div>
+</body>
+</html>
