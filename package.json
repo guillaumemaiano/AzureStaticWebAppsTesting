@@ -9,7 +9,7 @@
     "compile-sass": "sass scss:assets/css",
     "compile-typescript": "tsc && terser assets/js/custom.js -o assets/js/custom.min.js",
     "copy": "copyfiles -u 1 \"./src/**/*.{htm,html}\" \"./build\" && copyfiles -u 0 \"./*.{htm,html}\" \"./build\"",
-    "prepare-deploy": "cp -r assets ./build/ && cp routes.json ./build/"
+    "prepare-deploy": "shx cp -r assets build/ && shx cp routes.json build/"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,8 @@
   "devDependencies": {
     "copyfiles": "^2.4.1",
     "sass": "^1.80.4",
-    "typescript": "^5.6.3",
-    "terser": "^5.36.0"
+    "shx": "^0.3.4",
+    "terser": "^5.39.0",
+    "typescript": "^5.6.3"
   }
 }
