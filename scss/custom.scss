@@ -301,6 +301,7 @@ html, body {
 .text-box {
     // atmospheric -- linear-gradient(0deg,  $color-details, $color-electric, $color-contrast);
     background: linear-gradient(0deg,  rgba-color($color-details, 0.5), rgba-color($color-electric, 0.5), $color-hologram);
+    -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
     padding: 10px; /* Padding inside the text box */
     border: 1px solid $color-hologram;
