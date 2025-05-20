@@ -9,148 +9,206 @@
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
   <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'IBM Plex Sans', sans-serif;
-    background: #0C1212;
-    color: #EBE1D7;
-    scroll-behavior: smooth;
-    font-size: 18px;
-  }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: #0C1212;
+      color: #EBE1D7;
+      scroll-behavior: smooth;
+      font-size: 18px;
+    }
+    h1.ui.header, h2.ui.header, h3.ui.header {
+      color: #EBE1D7;
+      font-weight: 600;
+    }
+    p, .ui.segment, .ui.menu .item {
+      font-size: 1rem;
+      color: #EBE1D7;
+    }
+    section {
+      min-height: 100vh;
+      padding: 4rem;
+      scroll-snap-align: start;
+    }
+    #hero {
+      background: url('https://sdmntprukwest.oaiusercontent.com/files/00000000-49f4-6243-b57f-c335b4f8fa58/raw?se=2025-05-20T10%3A41%3A04Z&sp=r&sv=2024-08-04&sr=b&scid=9e134e70-c117-5206-9f95-682ec58634bb&skoid=b32d65cd-c8f1-46fb-90df-c208671889d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-20T08%3A26%3A22Z&ske=2025-05-21T08%3A26%3A22Z&sks=b&skv=2024-08-04&sig=Uj7KCYyobuLZt58DCD1dkcaJ8HSbJqQVqFz3yEyXFQU%3D') no-repeat center center !important;
+      background-size: cover !important;
+      position: relative;
+    }
+    .overlay {
+      background: rgba(12, 18, 18, 0.6);
+      padding: 2rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+      color: #EBE1D7;
+    }
+    /* Download CV button: copper/gold feel */
+    .hero-download {
+      background-color: #B87333 !important; /* copper */
+      color: #0C1212 !important;
+      border: none !important;
+      box-shadow: 0 0 10px rgba(184, 115, 51, 0.7);
+      transition: background 0.3s ease;
+    }
+    .hero-download:hover {
+      background-color: #D4AF37 !important; /* gold */
+    }
+    .dot-nav {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .dot-nav a {
+      width: 12px;
+      height: 12px;
+      background: #777;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    .dot-nav a:hover, .dot-nav a.active {
+      background: #EBE1D7;
+    }
 
-  h1.ui.header, h2.ui.header, h3.ui.header {
-    color: #EBE1D7;
-    font-weight: 600;
-  }
+    /* Experience Screen Background */
+    #experience {
+      background: #1C262C; /* deep slate */
+    }
 
-  p, .ui.segment, .ui.menu .item {
-    font-size: 1rem;
-    color: #EBE1D7;
-  }
-
-  section {
-    min-height: 100vh;
-    padding: 4rem;
-    scroll-snap-align: start;
-  }
-
-  #hero { 
-    background: url('https://sdmntprukwest.oaiusercontent.com/files/00000000-49f4-6243-b57f-c335b4f8fa58/raw?se=2025-05-20T10%3A41%3A04Z&sp=r&sv=2024-08-04&sr=b&scid=9e134e70-c117-5206-9f95-682ec58634bb&skoid=b32d65cd-c8f1-46fb-90df-c208671889d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-20T08%3A26%3A22Z&ske=2025-05-21T08%3A26%3A22Z&sks=b&skv=2024-08-04&sig=Uj7KCYyobuLZt58DCD1dkcaJ8HSbJqQVqFz3yEyXFQU%3D') no-repeat center center !important;
-    background-size: cover !important;
-    position: relative;
-  }
-
-  .overlay {
-    background: rgba(12, 18, 18, 0.6);
-    padding: 2rem;
-    border-radius: 1rem;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    max-width: 600px;
-    color: #EBE1D7;
-  }
-
-  .dot-nav {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1000;
-  }
-
-  .dot-nav a {
-    width: 12px;
-    height: 12px;
-    background: #777;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background 0.3s;
-  }
-
-  .dot-nav a:hover, .dot-nav a.active {
-    background: #EBE1D7;
-  }
-
-  #education {
-    background: #1A1F26;
-  }
-
-  #education .ui.segment {
-    min-height: 70vh;
-    display: none;
-    padding: 2rem;
-    border-radius: 0;
-    border-top: 1px solid #444;
-  }
-
-  #education .ui.segment[data-tab="education"] {
-    background-color: #1C2A3F; /* graphite blue */
-  }
-
-  #education .ui.segment[data-tab="languages"] {
-    background-color: #103E3E; /* midnight teal */
-  }
-
-  #education .ui.segment[data-tab="certifications"] {
-    background-color: #4C1F24; /* muted garnet */
-  }
-
-  #education .ui.segment.active {
-    display: block;
-  }
-
-  #education .ui.menu {
-    background: #0C1212;
-    border-bottom: 1px solid transparent;
-    border-radius: 0;
-    position: relative;
-  }
-
-  #education .ui.menu .item {
-    color: #EBE1D7;
-    border-radius: 0;
-    z-index: 1;
-  }
-
-  #education .ui.menu .item[data-tab="education"].active {
-    background-color: #2E486B !important;
-    color: #EBE1D7;
-  }
-
-  #education .ui.menu .item[data-tab="languages"].active {
-    background-color: #1A5757 !important;
-    color: #EBE1D7;
-  }
-
-  #education .ui.menu .item[data-tab="certifications"].active {
-    background-color: #7F2E35 !important;
-    color: #EBE1D7;
-  }
-</style>
-
+    /* Education Section */
+    #education {
+      background: #1A1F26;
+      position: relative;
+      padding-top: 2rem;
+    }
+    #education .ui.top.attached.tabular.menu {
+      background: #0C1212;
+      border-bottom: none;
+      position: relative;
+      z-index: 2;
+    }
+    .segment-wrapper {
+      position: relative;
+      margin-top: 3.5rem;
+      height: calc(70vh - 3.5rem);
+      overflow: hidden;
+    }
+    .segment-wrapper .ui.segment {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow-y: auto;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .segment-wrapper .ui.segment.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    #education .ui.menu .item {
+      color: #EBE1D7;
+      border-radius: 0;
+    }
+    #education .ui.menu .item.active {
+      background-color: #2E486B !important;
+    }
+    .ui.segment[data-tab="education"] { background-color: #1C2A3F; }
+    .ui.segment[data-tab="languages"]  { background-color: #103E3E; }
+    .ui.segment[data-tab="certifications"] { background-color: #4C1F24; }
+      /* Contact Section: solid charcoal-blue fallback */
+    #contact {
+      position: relative;
+      background: linear-gradient(135deg, #16202B 0%, #0D1318 100%);
+      overflow: hidden;
+    }
+    /* Edge accent line: copper */
+    #contact::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: #B87333;
+      z-index: 2;
+    }
+    /* Subdued particle animation */
+    #contact::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: particleMove 20s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Ensure container content sits above overlay */
+    #contact .ui.container {
+      position: relative;
+      z-index: 3;
+    }
+    @keyframes particleMove {
+      from { background-position: 0 0; }
+      to   { background-position: 50px 50px; }
+    }
+    /* Glassmorphic contact box */
+    .contact-box {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      max-width: 220px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(2px);
+      border: 1px solid #B87333;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      z-index: 3;
+    }
+    .contact-box ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .contact-box li + li {
+      margin-top: 0.5rem;
+    }
+    .contact-box a {
+      color: #B87333;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+      to   { background-position: 50px 50px; }
+    }
+  </style>
 </head>
 <body>
   <nav class="dot-nav">
-    <a href="#hero"></a>
-    <a href="#about"></a>
-    <a href="#experience"></a>
-    <a href="#education"></a>
-    <a href="#projects"></a>
-    <a href="#contact"></a>
+    <a href="#hero" aria-label="Hero"></a>
+    <a href="#about" aria-label="About"></a>
+    <a href="#experience" aria-label="Experience"></a>
+    <a href="#education" aria-label="Education"></a>
+    <a href="#projects" aria-label="Projects"></a>
+    <a href="#contact" aria-label="Contact"></a>
   </nav>
 
   <section id="hero">
     <div class="overlay">
       <h1 class="ui header">Guillaume Maiano</h1>
-      <p>Engineer. Strategist. Builder.<br/>
-      Currently shaping high-impact systems at the intersection of tech and leadership.</p>
-      <a class="ui red button" href="/cv.pdf">Download CV</a>
+      <p>Engineer. Strategist. Builder.<br/>Currently shaping high-impact systems at the intersection of tech and leadership.</p>
+      <a class="ui button hero-download" href="/cv.pdf">Download CV</a>
     </div>
   </section>
 
@@ -174,17 +232,19 @@
       <a class="item" data-tab="languages">Languages</a>
       <a class="item" data-tab="certifications">Certifications</a>
     </div>
-    <div class="ui bottom attached active tab segment" data-tab="education">
-      <h3 class="ui header">Education</h3>
-      <p>Lorem University - Executive Program</p>
-    </div>
-    <div class="ui bottom attached tab segment" data-tab="languages">
-      <h3 class="ui header">Languages</h3>
-      <p>English, French, Japanese, Mandarin (B1)</p>
-    </div>
-    <div class="ui bottom attached tab segment" data-tab="certifications">
-      <h3 class="ui header">Certifications</h3>
-      <p>Placeholder Cert A<br>Placeholder Cert B</p>
+    <div class="segment-wrapper">
+      <div class="ui bottom attached active tab segment" data-tab="education">
+        <h3 class="ui header">Education</h3>
+        <p>Lorem University - Executive Program</p>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="languages">
+        <h3 class="ui header">Languages</h3>
+        <p>English, French, Japanese, Mandarin (B1)</p>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="certifications">
+        <h3 class="ui header">Certifications</h3>
+        <p>Placeholder Cert A<br>Placeholder Cert B</p>
+      </div>
     </div>
   </section>
 
@@ -200,24 +260,59 @@
       <h2 class="ui header">Contact</h2>
       <p>Email: guillaume@maiano.fr<br>LinkedIn: /in/guillaumemaiano</p>
     </div>
+    <!-- Bottom-right glassmorphic URL box -->
+    <div class="contact-box">
+      <ul>
+        <li><a href="https://github.com/guillaumemaiano" target="_blank">GitHub</a></li>
+        <li><a href="https://devblog.maiano.fr" target="_blank">Dev Blog</a></li>
+        <li><a href="https://twitter.com/guillmaiano" target="_blank">Twitter</a></li>
+      </ul>
+    </div>
   </section>
 
   <script>
     $('.menu .item').tab();
-
-    // Side nav highlighting on scroll
     const sections = document.querySelectorAll("section");
     const navDots = document.querySelectorAll(".dot-nav a");
-
     function activateDot() {
       let index = sections.length;
       while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
       navDots.forEach(dot => dot.classList.remove("active"));
       if (navDots[index]) navDots[index].classList.add("active");
     }
-
     activateDot();
     window.addEventListener("scroll", activateDot);
+
+    (function(){
+      const tabs = ['education','languages','certifications'];
+      let current = 0;
+      let locking = false;
+      const $edu = $('#education');
+      function switchTab(idx){
+        const tab = tabs[idx];
+        const $old = $edu.find('.ui.segment.active');
+        const $new = $edu.find(`.ui.segment[data-tab="${tab}"]`);
+        $old.transition({ animation: 'fade', duration: 400, onComplete(){
+          $old.removeClass('active');
+          $new.addClass('active').transition({ animation: 'fade', duration: 400 });
+        }});
+        $edu.find('.ui.menu .item').removeClass('active')
+            .filter(`[data-tab="${tab}"]`).addClass('active');
+      }
+      $edu.on('wheel', function(e){
+        if(locking) return;
+        const delta = e.originalEvent.deltaY;
+        if((delta>0 && current<tabs.length-1) || (delta<0 && current>0)){
+          e.preventDefault(); locking=true;
+          current = delta>0 ? current+1 : current-1;
+          switchTab(current);
+          setTimeout(()=>locking=false, 800);
+        } else if(delta>0 && current===tabs.length-1){
+          $edu.off('wheel');
+          $('html, body').animate({ scrollTop: $edu.next().offset().top }, 500);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
