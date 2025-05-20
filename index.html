@@ -1,129 +1,366 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Guillaume Maiano</title>
-  <meta name="description" content="An experiment to show off on Azure">
-  <meta name="author" content="Guillaume Maiano">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: #0C1212;
+      color: #EBE1D7;
+      scroll-behavior: smooth;
+      font-size: 18px;
+    }
+    h1.ui.header, h2.ui.header, h3.ui.header {
+      color: #EBE1D7;
+      font-weight: 600;
+    }
+    p, .ui.segment, .ui.menu .item {
+      font-size: 1rem;
+      color: #EBE1D7;
+    }
+    section {
+      min-height: 100vh;
+      padding: 4rem;
+      scroll-snap-align: start;
+    }
+    #hero {
+      background: url('../assets/images/hex_dark_background.png') no-repeat center center !important;
+      background-size: cover !important;
+      position: relative;
+    }
+    .overlay {
+      background: rgba(12, 18, 18, 0.6);
+      padding: 2rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+      color: #EBE1D7;
+    }
+    /* Download CV button: copper/gold feel */
+    .hero-download {
+      background-color: #B87333 !important; /* copper */
+      color: #0C1212 !important;
+      border: none !important;
+      box-shadow: 0 0 10px rgba(184, 115, 51, 0.7);
+      transition: background 0.3s ease;
+    }
+    .hero-download:hover {
+      background-color: #D4AF37 !important; /* gold */
+    }
+    .dot-nav {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .dot-nav a {
+      width: 12px;
+      height: 12px;
+      background: #777;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    .dot-nav a:hover, .dot-nav a.active {
+      background: #EBE1D7;
+    }
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    /* Experience Screen Background */
+    #experience {
+      background: #1C262C; /* deep slate */
+    }
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    /* Education Section */
+    #education {
+      background: #1A1F26;
+      position: relative;
+      padding-top: 2rem;
+    }
+    #education .ui.top.attached.tabular.menu {
+      background: #0C1212;
+      border-bottom: none;
+      position: relative;
+      z-index: 2;
+    }
+    .segment-wrapper {
+      position: relative;
+      margin-top: 3.5rem;
+      height: calc(70vh - 3.5rem);
+      overflow: hidden;
+    }
+    .segment-wrapper .ui.segment {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow-y: auto;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .segment-wrapper .ui.segment.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    #education .ui.menu .item {
+      color: #EBE1D7;
+      border-radius: 0;
+    }
+#education .ui.menu .item[data-tab="education"].active {
+  background-color: #2E486B !important;
+}
 
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="assets/css/normalize.css">
-  <link rel="stylesheet" href="assets/css/skeleton.css">
-  <!-- custom stylesheet comes last -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=1.0">
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+#education .ui.menu .item[data-tab="languages"].active {
+  background-color: #1A6E6E !important;
+}
 
+#education .ui.menu .item[data-tab="certifications"].active {
+  background-color: #6E3A3A !important;
+}
+
+
+    .ui.segment[data-tab="education"] { background-color: #1C2A3F; }
+    .ui.segment[data-tab="languages"]  { background-color: #103E3E; }
+    .ui.segment[data-tab="certifications"] { background-color: #4C1F24; }
+      /* Contact Section: solid charcoal-blue fallback */
+    #contact {
+      position: relative;
+      background: linear-gradient(135deg, #16202B 0%, #0D1318 100%);
+      overflow: hidden;
+    }
+    /* Edge accent line: copper */
+    #contact::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: #B87333;
+      z-index: 2;
+    }
+    /* Subdued particle animation */
+    #contact::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: particleMove 20s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Ensure container content sits above overlay */
+    #contact .ui.container {
+      position: relative;
+      z-index: 3;
+    }
+    @keyframes particleMove {
+      from { background-position: 0 0; }
+      to   { background-position: 50px 50px; }
+    }
+    /* Glassmorphic contact box */
+    .contact-box {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      max-width: 220px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(2px);
+      border: 1px solid #B87333;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      z-index: 3;
+    }
+    .contact-box ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .contact-box li + li {
+      margin-top: 0.5rem;
+    }
+    .contact-box a {
+      color: #B87333;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+      /* wrapper plein écran */
+  #projects { position: relative; }
+
+  .proj-section {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  .underlay {
+    background: #333; /* gris sombre */
+  }
+  .red-fiber {
+    background: repeating-linear-gradient(
+      45deg,
+      #8B0000, #8B0000 6px,
+      #600 6px, #600 12px
+    );
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transition: clip-path 0.1s ease-out;
+  }
+  .proj-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: 100%;
+    color: #EBE1D7;
+    text-align: center;
+  }
+  .rosarium, .wrenchfall {
+    margin-bottom: 2rem;
+    background: rgba(0,0,0,0.5);
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+  }
+  .wrenchfall { background: rgba(139,0,0,0.7); }
+  </style>
 </head>
-
 <body>
-  <div class='body'>
-    <header class='silver'>
-      <div class='steel loaderbar'>
-        <div class='lightball'>
-        </div>
-      </div>
-      <div class='metaltext'>
-        Guillaume Ma&iuml;ano
-      </div>
-      <span class="rotateEmphasis">Programmer.</span> Brain in a flesh automaton.
-    </header>
-    <!--
-  Container relies on the Skeleton project for additional styling (getskeleton.com)
--->
-    <div class="container page-content">
-      <div class="section hero">
-        <div class="container">
-          <div class="row">
-            <div class="one-half column">
-              <h4 class="hero-heading">Technology, arts and great projects are the cornerstones of a healthy brain.
-                <br>Reliable friends, family and an active lifestyle are the foundations of an enjoyable existence.
+  <nav class="dot-nav">
+    <a href="#hero" aria-label="Hero"></a>
+    <a href="#about" aria-label="About"></a>
+    <a href="#experience" aria-label="Experience"></a>
+    <a href="#education" aria-label="Education"></a>
+    <a href="#projects" aria-label="Projects"></a>
+    <a href="#contact" aria-label="Contact"></a>
+  </nav>
 
-              </h4>
-              <a class="button button-primary" href="dev.html">Discover me</a>
-            </div>
-            <div class="one-half column">
-              <img class="portrait u-max-full-width"
-                src="https://avatars.githubusercontent.com/u/7815402?s=400&u=add432052d9b3b3aa362a4dd370e0c29939b5eb9&v=4">
-            </div>
-          </div>
-        </div>
+  <section id="hero">
+    <div class="overlay">
+      <h1 class="ui header">Guillaume Maiano</h1>
+      <p>Engineer. Strategist. Builder.<br/>Currently shaping high-impact systems at the intersection of tech and leadership.</p>
+      <a class="ui button hero-download" href="/cv.pdf">Download CV</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="ui container">
+      <h2 class="ui header">About Me</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="ui container">
+      <h2 class="ui header">Experience</h2>
+      <p>Lorem Company - Senior Architect<br>Ipsum Solutions - Product Strategist</p>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="ui top attached tabular menu">
+      <a class="active item" data-tab="education">Education</a>
+      <a class="item" data-tab="languages">Languages</a>
+      <a class="item" data-tab="certifications">Certifications</a>
+    </div>
+    <div class="segment-wrapper">
+      <div class="ui bottom attached active tab segment" data-tab="education">
+        <h3 class="ui header">Education</h3>
+        <p>Lorem University - Executive Program</p>
       </div>
-      <div class="section">
-        <div class="container">
-          <div class="row">
-            <div class="twelve column">
-              <h2>Current Projects</h2>
-              <p>I currently focus my energy on a few projects, in mobile app making and in model making.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="four columns">
-              <h4>Forest Base</h4>
-              <p>This is a diorama set in the Star Wars Universe, which includes a Rebel Base bunker, a TIE fighter and
-                an
-                X-Wing. It relies on an ESP8266 for WiFi and processing power, based on a LoLin V2 card. This will,
-                eventually, be displayed in my children's room.</p>
-              <p>The source is stored in a <a href="https://github.com/guillaumemaiano/IoT-models">Github
-                  repository</a>.
-              </p>
-              <img class="project-img hidden" src="">
-            </div>
-            <div class="four columns">
-              <h4>Predator - 40K universe</h4>
-              <p>This is a Space Marine Predator of the Salamanders Chapter. It relies on a Bluno card, which is an
-                Arduino
-                clone by the Chinese company DFRobot. This will join the ranks of my son's growing Salamanders army.</p>
-              <p>The source is stored in the same <a href="https://github.com/guillaumemaiano/IoT-models">Github
-                  repository</a>.</p>
-              <img class="project-img hidden" src="">
-            </div>
-            <div class="four columns">
-              <h4>Soulbound Generator</h4>
-              <p>I've bought Games Workshop's latest cooperative RPG to play some epic adventures with my wife and
-                children.
-                I'm building an iOS app to generate characters on the fly, which is useful for that game since it's
-                designed
-                for short, super-epic campaigns similar to the tabletop dungeon crawler from the same company.</p>
-              <p>I bought the game from Philibertnet.com.</p>
-              <a href='SoulBound.html'>
-              <img class="project-img" alt="the officiel announcement picture from Cubicle 7"
-                src="https://diw2l4zrbsp3w.cloudfront.net/wp-content/uploads/2020/01/AoS_Corebook_Cover-Mockup-2.jpg">
-              </a>
-            </div>
-          </div>
-        </div>
+      <div class="ui bottom attached tab segment" data-tab="languages">
+        <h3 class="ui header">Languages</h3>
+        <p>English, French, Japanese, Mandarin (B1)</p>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="certifications">
+        <h3 class="ui header">Certifications</h3>
+        <p>Placeholder Cert A<br>Placeholder Cert B</p>
       </div>
     </div>
-    <footer>
-      <ul>
-        <li hidden=true>
-          <a href="https://guillaume.maiano.fr">Guillaume</a>
-        </li>
-        <li>
-          <a href="https://github.com/guillaumemaiano">Github</a>
-        </li>
-        <li>
-          <a href="https://portal.azure.com/#home">Admin</a>
-        </li>
-      </ul>
-    </footer>
-  </div>
-</body>
-<!-- Scripts -->
-<script src="assets/js/scripts.js"></script>
+  </section>
 
+<section id="projects" class="ui vertical stripe segment" style="position:relative;overflow:hidden;">
+  <div class="ui container">
+    <h2 class="ui header">Projects</h2>
+    <!-- Sous-couche Rosarium -->
+    <div class="proj-section underlay"></div>
+    <!-- Calque Wrenchfall -->
+    <div class="proj-section red-fiber" id="wrenchfall"></div>
+    <!-- Contenu textuel -->
+    <div class="proj-content">
+      <div class="rosarium">
+        <h3>Rosarium Mundi</h3>
+        <p>Présentation sur fond gris sombre.</p>
+      </div>
+      <div class="wrenchfall">
+        <h3>Moteur Wrenchfall</h3>
+        <p>Description sur fond rouge sang.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <section id="contact">
+    <div class="ui container">
+      <h2 class="ui header">Contact</h2>
+      <p>Email: guillaume@maiano.fr<br>LinkedIn: /in/guillaumemaiano</p>
+    </div>
+    <!-- Bottom-right glassmorphic URL box -->
+    <div class="contact-box">
+      <ul>
+        <li><a href="https://github.com/guillaumemaiano" target="_blank">GitHub</a></li>
+        <li><a href="https://devblog.maiano.fr" target="_blank">Dev Blog</a></li>
+        <li><a href="https://twitter.com/guillmaiano" target="_blank">Twitter</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Semantic UI tabs
+    $('.ui.menu .item').tab();
+ (function() {
+    const el = document.getElementById('wrenchfall');
+    const sect = document.getElementById('projects');
+    function updateClip() {
+      const rect = sect.getBoundingClientRect();
+      const h = window.innerHeight;
+      // % de scroll de cette section (0 à 1)
+      let pct = (h - rect.top) / (rect.height + h);
+      pct = Math.min(Math.max(pct, 0), 1);
+      // 2 phases, comme votre exemple
+      let tTop = pct <= .5 ? pct*2*100 : 100;
+      let tBot = pct <= .5 ? 0 : (pct-.5)*2*100;
+      el.style.clipPath = `polygon(${tTop}% 0, 100% 0, 100% 100%, ${tBot}% 100%)`;
+    }
+    window.addEventListener('scroll', updateClip, { passive: true });
+    window.addEventListener('resize', updateClip);
+    updateClip();
+  })();
+    // Side nav highlighting on scroll
+    const sections = document.querySelectorAll('section');
+    const navDots = document.querySelectorAll('.dot-nav a');
+    function activateDot() {
+      let index = sections.length;
+      while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
+      navDots.forEach(dot => dot.classList.remove('active'));
+      if (navDots[index]) navDots[index].classList.add('active');
+    }
+    activateDot();
+    window.addEventListener('scroll', activateDot);
+  });
+</script>
+</body>
 </html>
