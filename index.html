@@ -118,9 +118,19 @@
       color: #EBE1D7;
       border-radius: 0;
     }
-    #education .ui.menu .item.active {
-      background-color: #2E486B !important;
-    }
+#education .ui.menu .item[data-tab="education"].active {
+  background-color: #2E486B !important;
+}
+
+#education .ui.menu .item[data-tab="languages"].active {
+  background-color: #1A6E6E !important;
+}
+
+#education .ui.menu .item[data-tab="certifications"].active {
+  background-color: #6E3A3A !important;
+}
+
+
     .ui.segment[data-tab="education"] { background-color: #1C2A3F; }
     .ui.segment[data-tab="languages"]  { background-color: #103E3E; }
     .ui.segment[data-tab="certifications"] { background-color: #4C1F24; }
@@ -189,8 +199,6 @@
     }
     .contact-box a:hover {
       text-decoration: underline;
-    }
-      to   { background-position: 50px 50px; }
     }
   </style>
 </head>
@@ -271,20 +279,22 @@
   </section>
 
   <script>
-    // Initialize Semantic UI tabs (clean switching behavior)
-    $('.menu .item').tab();
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Semantic UI tabs
+    $('.ui.menu .item').tab();
 
     // Side nav highlighting on scroll
-    const sections = document.querySelectorAll("section");
-    const navDots = document.querySelectorAll(".dot-nav a");
+    const sections = document.querySelectorAll('section');
+    const navDots = document.querySelectorAll('.dot-nav a');
     function activateDot() {
       let index = sections.length;
       while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
-      navDots.forEach(dot => dot.classList.remove("active"));
-      if (navDots[index]) navDots[index].classList.add("active");
+      navDots.forEach(dot => dot.classList.remove('active'));
+      if (navDots[index]) navDots[index].classList.add('active');
     }
     activateDot();
-    window.addEventListener("scroll", activateDot);
-  </script>
+    window.addEventListener('scroll', activateDot);
+  });
+</script>
 </body>
 </html>
