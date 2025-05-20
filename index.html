@@ -4,111 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Guillaume Maiano</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'IBM Plex Sans', sans-serif;
-      background: #0C1212;
-      color: #EBE1D7;
-      scroll-behavior: smooth;
-    }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: #0C1212;
+    color: #EBE1D7;
+    scroll-behavior: smooth;
+    font-size: 18px;
+  }
 
-    section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem;
-      scroll-snap-align: start;
-    }
+  h1.ui.header, h2.ui.header, h3.ui.header {
+    color: #EBE1D7;
+    font-weight: 600;
+  }
 
-    .edu-panel {
-      opacity: 0;
-      transform: translateX(100px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      margin-bottom: 4rem;
-      padding: 2rem;
-      border-radius: 0.5rem;
-    }
+  p, .ui.segment, .ui.menu .item {
+    font-size: 1rem;
+    color: #EBE1D7;
+  }
 
-    .edu-panel:nth-of-type(1) {
-      background-color: #1A1F26;
-    }
-    .edu-panel:nth-of-type(2) {
-      background-color: #102A3E;
-    }
-    .edu-panel:nth-of-type(3) {
-      background-color: #2A1F1F;
-    }
+  section {
+    min-height: 100vh;
+    padding: 4rem;
+    scroll-snap-align: start;
+  }
 
-    .edu-panel.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  #hero { 
+    background: url('https://sdmntprukwest.oaiusercontent.com/files/00000000-49f4-6243-b57f-c335b4f8fa58/raw?se=2025-05-20T10%3A41%3A04Z&sp=r&sv=2024-08-04&sr=b&scid=9e134e70-c117-5206-9f95-682ec58634bb&skoid=b32d65cd-c8f1-46fb-90df-c208671889d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-20T08%3A26%3A22Z&ske=2025-05-21T08%3A26%3A22Z&sks=b&skv=2024-08-04&sig=Uj7KCYyobuLZt58DCD1dkcaJ8HSbJqQVqFz3yEyXFQU%3D') no-repeat center center !important;
+    background-size: cover !important;
+    position: relative;
+  }
 
-    #hero {
-      background: url('https://sdmntprukwest.oaiusercontent.com/files/00000000-49f4-6243-b57f-c335b4f8fa58/raw?se=2025-05-20T10%3A41%3A04Z&sp=r&sv=2024-08-04&sr=b&scid=9e134e70-c117-5206-9f95-682ec58634bb&skoid=b32d65cd-c8f1-46fb-90df-c208671889d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-20T08%3A26%3A22Z&ske=2025-05-21T08%3A26%3A22Z&sks=b&skv=2024-08-04&sig=Uj7KCYyobuLZt58DCD1dkcaJ8HSbJqQVqFz3yEyXFQU%3D') no-repeat center center;
-      background-size: cover;
-      position: relative;
-    }
+  .overlay {
+    background: rgba(12, 18, 18, 0.6);
+    padding: 2rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    color: #EBE1D7;
+  }
 
-    .overlay {
-      background: rgba(12, 18, 18, 0.6);
-      padding: 2rem;
-      border-radius: 1rem;
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-      max-width: 600px;
-    }
+  .dot-nav {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
 
-    h1 {
-      font-size: 2.5rem;
-      margin: 0 0 1rem;
-    }
+  .dot-nav a {
+    width: 12px;
+    height: 12px;
+    background: #777;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background 0.3s;
+  }
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
+  .dot-nav a:hover, .dot-nav a.active {
+    background: #EBE1D7;
+  }
 
-    .button {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
-      background: #B03030;
-      color: #EBE1D7;
-      text-decoration: none;
-      border-radius: 0.25rem;
-    }
+  #education {
+    background: #1A1F26;
+  }
 
-    .dot-nav {
-      position: fixed;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 1000;
-    }
+  #education .ui.segment {
+    min-height: 70vh;
+    display: none;
+    padding: 2rem;
+    border-radius: 0;
+    border-top: 1px solid #444;
+  }
 
-    .dot-nav a {
-      width: 12px;
-      height: 12px;
-      background: #777;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background 0.3s;
-    }
+  #education .ui.segment[data-tab="education"] {
+    background-color: #1C2A3F; /* graphite blue */
+  }
 
-    .dot-nav a:hover, .dot-nav a.active {
-      background: #EBE1D7;
-    }
-  </style>
+  #education .ui.segment[data-tab="languages"] {
+    background-color: #103E3E; /* midnight teal */
+  }
+
+  #education .ui.segment[data-tab="certifications"] {
+    background-color: #4C1F24; /* muted garnet */
+  }
+
+  #education .ui.segment.active {
+    display: block;
+  }
+
+  #education .ui.menu {
+    background: #0C1212;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    position: relative;
+  }
+
+  #education .ui.menu .item {
+    color: #EBE1D7;
+    border-radius: 0;
+    z-index: 1;
+  }
+
+  #education .ui.menu .item[data-tab="education"].active {
+    background-color: #2E486B !important;
+    color: #EBE1D7;
+  }
+
+  #education .ui.menu .item[data-tab="languages"].active {
+    background-color: #1A5757 !important;
+    color: #EBE1D7;
+  }
+
+  #education .ui.menu .item[data-tab="certifications"].active {
+    background-color: #7F2E35 !important;
+    color: #EBE1D7;
+  }
+</style>
+
 </head>
 <body>
   <nav class="dot-nav">
@@ -122,70 +147,77 @@
 
   <section id="hero">
     <div class="overlay">
-      <h1>Guillaume Maiano</h1>
+      <h1 class="ui header">Guillaume Maiano</h1>
       <p>Engineer. Strategist. Builder.<br/>
       Currently shaping high-impact systems at the intersection of tech and leadership.</p>
-      <a class="button" href="/cv.pdf">Download CV</a>
+      <a class="ui red button" href="/cv.pdf">Download CV</a>
     </div>
   </section>
 
   <section id="about">
-    <div>
-      <h2>About Me</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec lectus sit amet urna consectetur ultricies.</p>
+    <div class="ui container">
+      <h2 class="ui header">About Me</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
   </section>
 
   <section id="experience">
-    <div>
-      <h2>Experience</h2>
+    <div class="ui container">
+      <h2 class="ui header">Experience</h2>
       <p>Lorem Company - Senior Architect<br>Ipsum Solutions - Product Strategist</p>
     </div>
   </section>
 
   <section id="education">
-    <div class="edu-panel">
-      <h2>Education</h2>
+    <div class="ui top attached tabular menu">
+      <a class="active item" data-tab="education">Education</a>
+      <a class="item" data-tab="languages">Languages</a>
+      <a class="item" data-tab="certifications">Certifications</a>
+    </div>
+    <div class="ui bottom attached active tab segment" data-tab="education">
+      <h3 class="ui header">Education</h3>
       <p>Lorem University - Executive Program</p>
     </div>
-    <div class="edu-panel">
-      <h2>Languages</h2>
+    <div class="ui bottom attached tab segment" data-tab="languages">
+      <h3 class="ui header">Languages</h3>
       <p>English, French, Japanese, Mandarin (B1)</p>
     </div>
-    <div class="edu-panel">
-      <h2>Certifications</h2>
+    <div class="ui bottom attached tab segment" data-tab="certifications">
+      <h3 class="ui header">Certifications</h3>
       <p>Placeholder Cert A<br>Placeholder Cert B</p>
     </div>
   </section>
 
   <section id="projects">
-    <div>
-      <h2>Projects</h2>
+    <div class="ui container">
+      <h2 class="ui header">Projects</h2>
       <p>Project Alpha, BetaCore, Codex Nine — strategy, architecture, narrative systems.</p>
     </div>
   </section>
 
   <section id="contact">
-    <div>
-      <h2>Contact</h2>
+    <div class="ui container">
+      <h2 class="ui header">Contact</h2>
       <p>Email: guillaume@maiano.fr<br>LinkedIn: /in/guillaumemaiano</p>
     </div>
   </section>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, { threshold: 0.25 });
+    $('.menu .item').tab();
 
-    document.querySelectorAll('.edu-panel').forEach(panel => {
-      observer.observe(panel);
-    });
+    // Side nav highlighting on scroll
+    const sections = document.querySelectorAll("section");
+    const navDots = document.querySelectorAll(".dot-nav a");
+
+    function activateDot() {
+      let index = sections.length;
+      while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
+      navDots.forEach(dot => dot.classList.remove("active"));
+      if (navDots[index]) navDots[index].classList.add("active");
+    }
+
+    activateDot();
+    window.addEventListener("scroll", activateDot);
   </script>
 </body>
 </html>
