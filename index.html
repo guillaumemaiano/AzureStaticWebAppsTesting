@@ -33,7 +33,7 @@
       scroll-snap-align: start;
     }
     #hero {
-      background: url('https://sdmntprukwest.oaiusercontent.com/files/00000000-49f4-6243-b57f-c335b4f8fa58/raw?se=2025-05-20T10%3A41%3A04Z&sp=r&sv=2024-08-04&sr=b&scid=9e134e70-c117-5206-9f95-682ec58634bb&skoid=b32d65cd-c8f1-46fb-90df-c208671889d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-20T08%3A26%3A22Z&ske=2025-05-21T08%3A26%3A22Z&sks=b&skv=2024-08-04&sig=Uj7KCYyobuLZt58DCD1dkcaJ8HSbJqQVqFz3yEyXFQU%3D') no-repeat center center !important;
+      background: url('../assets/images/hex_dark_background.png') no-repeat center center !important;
       background-size: cover !important;
       position: relative;
     }
@@ -271,7 +271,10 @@
   </section>
 
   <script>
+    // Initialize Semantic UI tabs (clean switching behavior)
     $('.menu .item').tab();
+
+    // Side nav highlighting on scroll
     const sections = document.querySelectorAll("section");
     const navDots = document.querySelectorAll(".dot-nav a");
     function activateDot() {
@@ -282,37 +285,6 @@
     }
     activateDot();
     window.addEventListener("scroll", activateDot);
-
-    (function(){
-      const tabs = ['education','languages','certifications'];
-      let current = 0;
-      let locking = false;
-      const $edu = $('#education');
-      function switchTab(idx){
-        const tab = tabs[idx];
-        const $old = $edu.find('.ui.segment.active');
-        const $new = $edu.find(`.ui.segment[data-tab="${tab}"]`);
-        $old.transition({ animation: 'fade', duration: 400, onComplete(){
-          $old.removeClass('active');
-          $new.addClass('active').transition({ animation: 'fade', duration: 400 });
-        }});
-        $edu.find('.ui.menu .item').removeClass('active')
-            .filter(`[data-tab="${tab}"]`).addClass('active');
-      }
-      $edu.on('wheel', function(e){
-        if(locking) return;
-        const delta = e.originalEvent.deltaY;
-        if((delta>0 && current<tabs.length-1) || (delta<0 && current>0)){
-          e.preventDefault(); locking=true;
-          current = delta>0 ? current+1 : current-1;
-          switchTab(current);
-          setTimeout(()=>locking=false, 800);
-        } else if(delta>0 && current===tabs.length-1){
-          $edu.off('wheel');
-          $('html, body').animate({ scrollTop: $edu.next().offset().top }, 500);
-        }
-      });
-    })();
   </script>
 </body>
 </html>
