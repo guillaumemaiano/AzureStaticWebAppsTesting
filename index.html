@@ -1,129 +1,191 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Guillaume Maiano</title>
-  <meta name="description" content="An experiment to show off on Azure">
-  <meta name="author" content="Guillaume Maiano">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: #0C1212;
+      color: #EBE1D7;
+      scroll-behavior: smooth;
+    }
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem;
+      scroll-snap-align: start;
+    }
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    .edu-panel {
+      opacity: 0;
+      transform: translateX(100px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      margin-bottom: 4rem;
+      padding: 2rem;
+      border-radius: 0.5rem;
+    }
 
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="assets/css/normalize.css">
-  <link rel="stylesheet" href="assets/css/skeleton.css">
-  <!-- custom stylesheet comes last -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=1.0">
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    .edu-panel:nth-of-type(1) {
+      background-color: #1A1F26;
+    }
+    .edu-panel:nth-of-type(2) {
+      background-color: #102A3E;
+    }
+    .edu-panel:nth-of-type(3) {
+      background-color: #2A1F1F;
+    }
 
+    .edu-panel.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    #hero {
+      background: url('https://sdmntprukwest.oaiusercontent.com/files/00000000-49f4-6243-b57f-c335b4f8fa58/raw?se=2025-05-20T10%3A41%3A04Z&sp=r&sv=2024-08-04&sr=b&scid=9e134e70-c117-5206-9f95-682ec58634bb&skoid=b32d65cd-c8f1-46fb-90df-c208671889d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-20T08%3A26%3A22Z&ske=2025-05-21T08%3A26%3A22Z&sks=b&skv=2024-08-04&sig=Uj7KCYyobuLZt58DCD1dkcaJ8HSbJqQVqFz3yEyXFQU%3D') no-repeat center center;
+      background-size: cover;
+      position: relative;
+    }
+
+    .overlay {
+      background: rgba(12, 18, 18, 0.6);
+      padding: 2rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0 0 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #B03030;
+      color: #EBE1D7;
+      text-decoration: none;
+      border-radius: 0.25rem;
+    }
+
+    .dot-nav {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .dot-nav a {
+      width: 12px;
+      height: 12px;
+      background: #777;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .dot-nav a:hover, .dot-nav a.active {
+      background: #EBE1D7;
+    }
+  </style>
 </head>
-
 <body>
-  <div class='body'>
-    <header class='silver'>
-      <div class='steel loaderbar'>
-        <div class='lightball'>
-        </div>
-      </div>
-      <div class='metaltext'>
-        Guillaume Ma&iuml;ano
-      </div>
-      <span class="rotateEmphasis">Programmer.</span> Brain in a flesh automaton.
-    </header>
-    <!--
-  Container relies on the Skeleton project for additional styling (getskeleton.com)
--->
-    <div class="container page-content">
-      <div class="section hero">
-        <div class="container">
-          <div class="row">
-            <div class="one-half column">
-              <h4 class="hero-heading">Technology, arts and great projects are the cornerstones of a healthy brain.
-                <br>Reliable friends, family and an active lifestyle are the foundations of an enjoyable existence.
+  <nav class="dot-nav">
+    <a href="#hero"></a>
+    <a href="#about"></a>
+    <a href="#experience"></a>
+    <a href="#education"></a>
+    <a href="#projects"></a>
+    <a href="#contact"></a>
+  </nav>
 
-              </h4>
-              <a class="button button-primary" href="dev.html">Discover me</a>
-            </div>
-            <div class="one-half column">
-              <img class="portrait u-max-full-width"
-                src="https://avatars.githubusercontent.com/u/7815402?s=400&u=add432052d9b3b3aa362a4dd370e0c29939b5eb9&v=4">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="container">
-          <div class="row">
-            <div class="twelve column">
-              <h2>Current Projects</h2>
-              <p>I currently focus my energy on a few projects, in mobile app making and in model making.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="four columns">
-              <h4>Forest Base</h4>
-              <p>This is a diorama set in the Star Wars Universe, which includes a Rebel Base bunker, a TIE fighter and
-                an
-                X-Wing. It relies on an ESP8266 for WiFi and processing power, based on a LoLin V2 card. This will,
-                eventually, be displayed in my children's room.</p>
-              <p>The source is stored in a <a href="https://github.com/guillaumemaiano/IoT-models">Github
-                  repository</a>.
-              </p>
-              <img class="project-img hidden" src="">
-            </div>
-            <div class="four columns">
-              <h4>Predator - 40K universe</h4>
-              <p>This is a Space Marine Predator of the Salamanders Chapter. It relies on a Bluno card, which is an
-                Arduino
-                clone by the Chinese company DFRobot. This will join the ranks of my son's growing Salamanders army.</p>
-              <p>The source is stored in the same <a href="https://github.com/guillaumemaiano/IoT-models">Github
-                  repository</a>.</p>
-              <img class="project-img hidden" src="">
-            </div>
-            <div class="four columns">
-              <h4>Soulbound Generator</h4>
-              <p>I've bought Games Workshop's latest cooperative RPG to play some epic adventures with my wife and
-                children.
-                I'm building an iOS app to generate characters on the fly, which is useful for that game since it's
-                designed
-                for short, super-epic campaigns similar to the tabletop dungeon crawler from the same company.</p>
-              <p>I bought the game from Philibertnet.com.</p>
-              <a href='SoulBound.html'>
-              <img class="project-img" alt="the officiel announcement picture from Cubicle 7"
-                src="https://diw2l4zrbsp3w.cloudfront.net/wp-content/uploads/2020/01/AoS_Corebook_Cover-Mockup-2.jpg">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+  <section id="hero">
+    <div class="overlay">
+      <h1>Guillaume Maiano</h1>
+      <p>Engineer. Strategist. Builder.<br/>
+      Currently shaping high-impact systems at the intersection of tech and leadership.</p>
+      <a class="button" href="/cv.pdf">Download CV</a>
     </div>
-    <footer>
-      <ul>
-        <li hidden=true>
-          <a href="https://guillaume.maiano.fr">Guillaume</a>
-        </li>
-        <li>
-          <a href="https://github.com/guillaumemaiano">Github</a>
-        </li>
-        <li>
-          <a href="https://portal.azure.com/#home">Admin</a>
-        </li>
-      </ul>
-    </footer>
-  </div>
-</body>
-<!-- Scripts -->
-<script src="assets/js/scripts.js"></script>
+  </section>
 
+  <section id="about">
+    <div>
+      <h2>About Me</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec lectus sit amet urna consectetur ultricies.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div>
+      <h2>Experience</h2>
+      <p>Lorem Company - Senior Architect<br>Ipsum Solutions - Product Strategist</p>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="edu-panel">
+      <h2>Education</h2>
+      <p>Lorem University - Executive Program</p>
+    </div>
+    <div class="edu-panel">
+      <h2>Languages</h2>
+      <p>English, French, Japanese, Mandarin (B1)</p>
+    </div>
+    <div class="edu-panel">
+      <h2>Certifications</h2>
+      <p>Placeholder Cert A<br>Placeholder Cert B</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div>
+      <h2>Projects</h2>
+      <p>Project Alpha, BetaCore, Codex Nine — strategy, architecture, narrative systems.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div>
+      <h2>Contact</h2>
+      <p>Email: guillaume@maiano.fr<br>LinkedIn: /in/guillaumemaiano</p>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll('.edu-panel').forEach(panel => {
+      observer.observe(panel);
+    });
+  </script>
+</body>
 </html>
