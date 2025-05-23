@@ -268,14 +268,14 @@
     border-radius: .5rem;
   }
   .wrenchfall { background: rgba(139,0,0,0.7); }
-  /* sous le menu : gap + scroll desktop */
+ /* gap + scroll desktop */
 #education .ui.bottom.attached.tab.segment {
   margin-top: 1rem;
   height: calc(70vh - 1rem);
   overflow-y: auto;
 }
 
-/* mobile : flux normal */
+/* responsive mobile */
 @media (max-width: 600px) {
   #education .ui.bottom.attached.tab.segment {
     margin-top: 0.5rem;
@@ -325,27 +325,26 @@
     </div>
   </section>
 
-  <section id="education">
-    
-    <div class="ui top attached tabular menu">
-      <a class="active item" data-tab="education">Education</a>
-      <a class="item" data-tab="languages">Languages</a>
-      <a class="item" data-tab="certifications">Certifications</a>
-    </div>
-      <div class="ui bottom attached active tab segment" data-tab="education">
-        <h3 class="ui header">Education</h3>
-        <p>Lorem University - Executive Program</p>
-      </div>
-      <div class="ui bottom attached tab segment" data-tab="languages">
-        <h3 class="ui header">Languages</h3>
-        <p>English, French, Japanese, Mandarin (B1)</p>
-      </div>
-      <div class="ui bottom attached tab segment" data-tab="certifications">
-        <h3 class="ui header">Certifications</h3>
-        <p>Placeholder Cert A<br>Placeholder Cert B</p>
-      </div>
-    </div>
-  </section>
+<section id="education">
+  <div class="ui top attached tabular menu">
+    <a class="active item" data-tab="education">Education</a>
+    <a class="item" data-tab="languages">Languages</a>
+    <a class="item" data-tab="certifications">Certifications</a>
+  </div>
+
+  <div class="ui bottom attached active tab segment" data-tab="education">
+    <h3 class="ui header">Education</h3>
+    <p>Lorem University – Executive Program</p>
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="languages">
+    <h3 class="ui header">Languages</h3>
+    <p>English, French, Japanese, Mandarin (B1)</p>
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="certifications">
+    <h3 class="ui header">Certifications</h3>
+    <p>Placeholder Cert A<br>Placeholder Cert B</p>
+  </div>
+</section>
 
 <section id="projects" class="ui vertical stripe segment" style="position:relative;overflow:hidden;">
   <div class="ui container">
