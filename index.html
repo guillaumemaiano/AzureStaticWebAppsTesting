@@ -41,6 +41,7 @@
       background: rgba(12, 18, 18, 0.6);
       padding: 2rem;
       border-radius: 1rem;
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
@@ -97,27 +98,12 @@
       position: relative;
       z-index: 2;
     }
-    .segment-wrapper {
-      position: relative;
-      margin-top: 3.5rem;
-      height: calc(70vh - 3.5rem);
-      overflow: hidden;
-    }
-    .segment-wrapper .ui.segment {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      overflow-y: auto;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .segment-wrapper .ui.segment.active {
-      opacity: 1;
-      z-index: 1;
-    }
+  
     #education .ui.menu .item {
       color: #EBE1D7;
       border-radius: 0;
     }
+
 #education .ui.menu .item[data-tab="education"].active {
   background-color: #2E486B !important;
 }
@@ -177,6 +163,7 @@
       right: 2rem;
       max-width: 220px;
       background: rgba(255, 255, 255, 0.05);
+      -webkit-backdrop-filter: blur(2px);
       backdrop-filter: blur(2px);
       border: 1px solid #B87333;
       padding: 1rem;
@@ -234,7 +221,114 @@
     border-radius: .5rem;
   }
   .wrenchfall { background: rgba(139,0,0,0.7); }
-  </style>
+ /* gap + scroll desktop */
+#education .ui.bottom.attached.tab.segment {
+  margin-top: 1rem;
+  height: calc(70vh - 1rem);
+  overflow-y: auto;
+}
+
+/* responsive mobile */
+@media (max-width: 600px) {
+  #education .ui.bottom.attached.tab.segment {
+    margin-top: 0.5rem;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  #education .ui.top.attached.menu {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #education .ui.top.attached.menu .item {
+    flex: none;
+  }
+}
+#projects {
+  min-height: 200vh;
+}
+
+#projects .proj-content {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#projects .proj-content > div {
+  width: 45%;
+  height: 90%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  #projects .proj-content {
+    flex-direction: column !important;
+  }
+  #projects .proj-content > div {
+    width: 80%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+}
+
+#experience {
+  background-color: #014421;
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 100%;
+}
+
+#experience,
+#experience p {
+  color: #C0C0C0;
+}
+#experience h2.ui.header {
+  color: #C0C0C0 !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+ 
+#experience .ui.segment {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #C0C0C0;
+  border-radius: 4px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+} 
+#experience .ui.button,
+#experience .ui.label {
+  background-color: #C0C0C0 !important;
+  color: #014421 !important;
+  border: none !important;
+}
+
+#experience .ui.button:hover,
+#experience .ui.segment:hover {
+  background: rgba(255,255,255,0.15) !important;
+}
+@keyframes text-shimmer {
+  0%   { background-position: -150% 0; }
+  100% { background-position: 150% 0; }
+}
+@media (max-width: 600px) {
+  #experience h2.ui.header,
+  #experience .ui.segment p {
+    animation-duration: 12s; 
+  }
+}
+#experience {
+  background-image: url('/assets/images/green-velvet-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-color: #1A472A !important;  
+}
+
+</style>
 </head>
 <body>
   <nav class="dot-nav">
@@ -268,27 +362,26 @@
     </div>
   </section>
 
-  <section id="education">
-    <div class="ui top attached tabular menu">
-      <a class="active item" data-tab="education">Education</a>
-      <a class="item" data-tab="languages">Languages</a>
-      <a class="item" data-tab="certifications">Certifications</a>
-    </div>
-    <div class="segment-wrapper">
-      <div class="ui bottom attached active tab segment" data-tab="education">
-        <h3 class="ui header">Education</h3>
-        <p>Lorem University - Executive Program</p>
-      </div>
-      <div class="ui bottom attached tab segment" data-tab="languages">
-        <h3 class="ui header">Languages</h3>
-        <p>English, French, Japanese, Mandarin (B1)</p>
-      </div>
-      <div class="ui bottom attached tab segment" data-tab="certifications">
-        <h3 class="ui header">Certifications</h3>
-        <p>Placeholder Cert A<br>Placeholder Cert B</p>
-      </div>
-    </div>
-  </section>
+<section id="education">
+  <div class="ui top attached tabular menu">
+    <a class="active item" data-tab="education">Education</a>
+    <a class="item" data-tab="languages">Languages</a>
+    <a class="item" data-tab="certifications">Certifications</a>
+  </div>
+
+  <div class="ui bottom attached active tab segment" data-tab="education">
+    <h3 class="ui header">Education</h3>
+    <p>Lorem University – Executive Program</p>
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="languages">
+    <h3 class="ui header">Languages</h3>
+    <p>English, French, Japanese, Mandarin (B1)</p>
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="certifications">
+    <h3 class="ui header">Certifications</h3>
+    <p>Placeholder Cert A<br>Placeholder Cert B</p>
+  </div>
+</section>
 
 <section id="projects" class="ui vertical stripe segment" style="position:relative;overflow:hidden;">
   <div class="ui container">
@@ -320,9 +413,9 @@
     <!-- Bottom-right glassmorphic URL box -->
     <div class="contact-box">
       <ul>
-        <li><a href="https://github.com/guillaumemaiano" target="_blank">GitHub</a></li>
-        <li><a href="https://devblog.maiano.fr" target="_blank">Dev Blog</a></li>
-        <li><a href="https://twitter.com/guillmaiano" target="_blank">Twitter</a></li>
+        <li><a href="https://github.com/guillaumemaiano" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://devblog.maiano.fr" target="_blank" rel="noopener">Dev Blog</a></li>
+        <li><a href="https://twitter.com/guillmaiano" target="_blank" rel="noopener">Twitter</a></li>
       </ul>
     </div>
   </section>
@@ -337,29 +430,40 @@
     function updateClip() {
       const rect = sect.getBoundingClientRect();
       const h = window.innerHeight;
-      // % de scroll de cette section (0 à 1)
+      // Percentage of scroll for this section (0 to 1)
       let pct = (h - rect.top) / (rect.height + h);
       pct = Math.min(Math.max(pct, 0), 1);
-      // 2 phases, comme votre exemple
+      // Two phases, as in your example
       let tTop = pct <= .5 ? pct*2*100 : 100;
       let tBot = pct <= .5 ? 0 : (pct-.5)*2*100;
       el.style.clipPath = `polygon(${tTop}% 0, 100% 0, 100% 100%, ${tBot}% 100%)`;
     }
-    window.addEventListener('scroll', updateClip, { passive: true });
+
+    window.addEventListener('scroll', debounce(updateClip, 100), { passive: true });
     window.addEventListener('resize', updateClip);
     updateClip();
-  })();
     // Side nav highlighting on scroll
-    const sections = document.querySelectorAll('section');
-    const navDots = document.querySelectorAll('.dot-nav a');
-    function activateDot() {
-      let index = sections.length;
-      while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
+    // Side nav highlighting on scroll
+const sections = document.querySelectorAll('section');
+const navDots = document.querySelectorAll('.dot-nav a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.target.id) return;
+    const idx = Array.from(sections).indexOf(entry.target);
+    if (entry.isIntersecting) {
       navDots.forEach(dot => dot.classList.remove('active'));
-      if (navDots[index]) navDots[index].classList.add('active');
+      if (navDots[idx]) navDots[idx].classList.add('active');
     }
-    activateDot();
-    window.addEventListener('scroll', activateDot);
+  });
+}, {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.5  
+});
+
+
+    sections.forEach(section => observer.observe(section));
   });
 </script>
 </body>
