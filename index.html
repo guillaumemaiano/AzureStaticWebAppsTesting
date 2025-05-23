@@ -41,6 +41,7 @@
       background: rgba(12, 18, 18, 0.6);
       padding: 2rem;
       border-radius: 1rem;
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
@@ -118,6 +119,32 @@
       color: #EBE1D7;
       border-radius: 0;
     }
+    /* desktop */
+.segment-wrapper {
+  height: calc(70vh - 3.5rem);
+  overflow-y: auto;
+  padding: 1rem;            /* optionnel */
+}
+
+/* smartphone */
+@media (max-width: 600px) {
+  /* menu tab devient scrollable si trop large */
+  #education .ui.top.attached.menu {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #education .ui.top.attached.menu .item {
+    flex: none;            /* éviter écrasement */
+  }
+
+  /* wrapper libéré de sa hauteur fixe */
+  .segment-wrapper {
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0.5rem 1rem;
+  }
+}
+
     
 #education .ui.menu .item[data-tab="education"].active {
   background-color: #2E486B !important;
@@ -178,6 +205,7 @@
       right: 2rem;
       max-width: 220px;
       background: rgba(255, 255, 255, 0.05);
+      -webkit-backdrop-filter: blur(2px);
       backdrop-filter: blur(2px);
       border: 1px solid #B87333;
       padding: 1rem;
@@ -268,6 +296,37 @@
       <p>Lorem Company - Senior Architect<br>Ipsum Solutions - Product Strategist</p>
     </div>
   </section>
+<section id="education">
+  <div class="ui top attached tabular menu">
+    <a class="active item" data-tab="education">Education</a>
+    <a class="item" data-tab="languages">Languages</a>
+    <a class="item" data-tab="certifications">Certifications</a>
+  </div>
+
+  <div class="ui bottom attached active tab segment" data-tab="education">
+    <div class="segment-wrapper">
+      <!-- contenu Education -->
+      <h3 class="ui header">Education</h3>
+      <p>Lorem University – Executive Program</p>
+    </div>
+  </div>
+
+  <div class="ui bottom attached tab segment" data-tab="languages">
+    <div class="segment-wrapper">
+      <!-- contenu Languages -->
+      <h3 class="ui header">Languages</h3>
+      <p>English, French, Japanese, Mandarin (B1)</p>
+    </div>
+  </div>
+
+  <div class="ui bottom attached tab segment" data-tab="certifications">
+    <div class="segment-wrapper">
+      <!-- contenu Certifications -->
+      <h3 class="ui header">Certifications</h3>
+      <p>Placeholder Cert A<br>Placeholder Cert B</p>
+    </div>
+  </div>
+</section>
 
   <section id="education">
     <div class="ui top attached tabular menu">
@@ -321,9 +380,9 @@
     <!-- Bottom-right glassmorphic URL box -->
     <div class="contact-box">
       <ul>
-        <li><a href="https://github.com/guillaumemaiano" target="_blank">GitHub</a></li>
-        <li><a href="https://devblog.maiano.fr" target="_blank">Dev Blog</a></li>
-        <li><a href="https://twitter.com/guillmaiano" target="_blank">Twitter</a></li>
+        <li><a href="https://github.com/guillaumemaiano" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://devblog.maiano.fr" target="_blank" rel="noopener">Dev Blog</a></li>
+        <li><a href="https://twitter.com/guillmaiano" target="_blank" rel="noopener">Twitter</a></li>
       </ul>
     </div>
   </section>
