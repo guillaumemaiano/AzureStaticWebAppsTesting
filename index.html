@@ -438,18 +438,10 @@
       let tBot = pct <= .5 ? 0 : (pct-.5)*2*100;
       el.style.clipPath = `polygon(${tTop}% 0, 100% 0, 100% 100%, ${tBot}% 100%)`;
     }
-    const debounce = (func, wait) => {
-      let timeout;
-      return function(...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-      };
-    };
 
     window.addEventListener('scroll', debounce(updateClip, 100), { passive: true });
     window.addEventListener('resize', updateClip);
     updateClip();
-  })();
     // Side nav highlighting on scroll
     // Side nav highlighting on scroll
 const sections = document.querySelectorAll('section');
