@@ -243,8 +243,36 @@
     flex: none;
   }
 }
+#projects {
+  min-height: 200vh;
+}
 
-  </style>
+#projects .proj-content {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#projects .proj-content > div {
+  width: 45%;
+  height: 90%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  #projects .proj-content {
+    flex-direction: column !important;
+  }
+  #projects .proj-content > div {
+    width: 80%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+}
+
+
+</style>
 </head>
 <body>
   <nav class="dot-nav">
@@ -346,29 +374,48 @@
     function updateClip() {
       const rect = sect.getBoundingClientRect();
       const h = window.innerHeight;
-      // % de scroll de cette section (0 à 1)
+      // Percentage of scroll for this section (0 to 1)
       let pct = (h - rect.top) / (rect.height + h);
       pct = Math.min(Math.max(pct, 0), 1);
-      // 2 phases, comme votre exemple
+      // Two phases, as in your example
       let tTop = pct <= .5 ? pct*2*100 : 100;
       let tBot = pct <= .5 ? 0 : (pct-.5)*2*100;
       el.style.clipPath = `polygon(${tTop}% 0, 100% 0, 100% 100%, ${tBot}% 100%)`;
     }
-    window.addEventListener('scroll', updateClip, { passive: true });
+    const debounce = (func, wait) => {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    };
+
+    window.addEventListener('scroll', debounce(updateClip, 100), { passive: true });
     window.addEventListener('resize', updateClip);
     updateClip();
   })();
     // Side nav highlighting on scroll
-    const sections = document.querySelectorAll('section');
-    const navDots = document.querySelectorAll('.dot-nav a');
-    function activateDot() {
-      let index = sections.length;
-      while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
+    // Side nav highlighting on scroll
+const sections = document.querySelectorAll('section');
+const navDots = document.querySelectorAll('.dot-nav a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.target.id) return;
+    const idx = Array.from(sections).indexOf(entry.target);
+    if (entry.isIntersecting) {
       navDots.forEach(dot => dot.classList.remove('active'));
-      if (navDots[index]) navDots[index].classList.add('active');
+      if (navDots[idx]) navDots[idx].classList.add('active');
     }
-    activateDot();
-    window.addEventListener('scroll', activateDot);
+  });
+}, {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.5  
+});
+
+
+    sections.forEach(section => observer.observe(section));
   });
 </script>
 </body>
