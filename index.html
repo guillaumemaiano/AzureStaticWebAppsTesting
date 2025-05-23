@@ -315,6 +315,40 @@
   position: relative;
   background-color: #1A472A !important;  
 }
+@media (max-width: 600px) {
+  #education {
+    min-height: 100vh !important;
+    padding: 2rem 1rem !important;
+  }
+  #education .ui.bottom.attached.tab.segment {
+    margin-top: 1rem;
+    height: calc(100vh - 4rem) !important;
+    overflow-y: auto !important;
+  }
+}
+
+#projects .ui.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#projects .proj-content {
+  flex: 1;
+  max-height: 90%;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  #projects .ui.container {
+    height: auto;
+  }
+  #projects .proj-content {
+    max-height: none;
+    margin: 2rem 0;
+  }
+}
 
 </style>
 </head>
