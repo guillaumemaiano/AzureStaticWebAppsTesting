@@ -98,52 +98,57 @@
       position: relative;
       z-index: 2;
     }
-    .segment-wrapper {
-      position: static;
-      margin-top: 3.5rem;
-      height: calc(70vh - 3.5rem);
-      overflow: hidden;
-    }
-    .segment-wrapper .ui.segment {
-      position: static;
-      top: 0; left: 0; right: 0; bottom: 0;
-      overflow-y: auto;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .segment-wrapper .ui.segment.active {
-      opacity: 1;
-      z-index: 1;
-    }
+  
     #education .ui.menu .item {
       color: #EBE1D7;
       border-radius: 0;
     }
-    /* desktop */
+/*-----------------------*/
+/* Wrapper avec gap fixe */
+/*-----------------------*/
 .segment-wrapper {
-  height: calc(70vh - 3.5rem);
+  margin-top: 1rem;               /* espace sous le menu */
+  height: calc(70vh - 1rem);      /* hauteur desktop */
   overflow-y: auto;
-  padding: 1rem;            /* optionnel */
 }
 
-/* smartphone */
+/*------------------------------------*/
+/* Segments statiques, transition OK */
+/*------------------------------------*/
+.segment-wrapper .ui.tab.segment {
+  position: static !important;     /* fluidité du flux normal */
+  display: block !important;       /* override Semantic-UI display:none */
+  opacity: 0;
+  transition: opacity 0.4s ease;   /* vos transitions restent */
+}
+
+/*--------------------------------*/
+/* Afficher uniquement le segment */
+/* actif (Semantic-UI ajoute .active) */
+/*--------------------------------*/
+.segment-wrapper .ui.tab.segment.active {
+  opacity: 1;
+}
+
+/*--------------------------------*/
+/* Mobile : hauteur auto, pas de scroll */
+/*--------------------------------*/
 @media (max-width: 600px) {
-  /* menu tab devient scrollable si trop large */
+  .segment-wrapper {
+    height: auto !important;
+    overflow: visible !important;
+    margin-top: 0.5rem;
+  }
+  /* si votre menu <a> déborde */
   #education .ui.top.attached.menu {
     overflow-x: auto;
     white-space: nowrap;
   }
   #education .ui.top.attached.menu .item {
-    flex: none;            /* éviter écrasement */
-  }
-
-  /* wrapper libéré de sa hauteur fixe */
-  .segment-wrapper {
-    height: auto !important;
-    overflow: visible !important;
-    padding: 0.5rem 1rem;
+    flex: none;
   }
 }
+
 
     
 #education .ui.menu .item[data-tab="education"].active {
@@ -263,6 +268,29 @@
     border-radius: .5rem;
   }
   .wrenchfall { background: rgba(139,0,0,0.7); }
+  /* sous le menu : gap + scroll desktop */
+#education .ui.bottom.attached.tab.segment {
+  margin-top: 1rem;
+  height: calc(70vh - 1rem);
+  overflow-y: auto;
+}
+
+/* mobile : flux normal */
+@media (max-width: 600px) {
+  #education .ui.bottom.attached.tab.segment {
+    margin-top: 0.5rem;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  #education .ui.top.attached.menu {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #education .ui.top.attached.menu .item {
+    flex: none;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -296,45 +324,14 @@
       <p>Lorem Company - Senior Architect<br>Ipsum Solutions - Product Strategist</p>
     </div>
   </section>
-<section id="education">
-  <div class="ui top attached tabular menu">
-    <a class="active item" data-tab="education">Education</a>
-    <a class="item" data-tab="languages">Languages</a>
-    <a class="item" data-tab="certifications">Certifications</a>
-  </div>
-
-  <div class="ui bottom attached active tab segment" data-tab="education">
-    <div class="segment-wrapper">
-      <!-- contenu Education -->
-      <h3 class="ui header">Education</h3>
-      <p>Lorem University – Executive Program</p>
-    </div>
-  </div>
-
-  <div class="ui bottom attached tab segment" data-tab="languages">
-    <div class="segment-wrapper">
-      <!-- contenu Languages -->
-      <h3 class="ui header">Languages</h3>
-      <p>English, French, Japanese, Mandarin (B1)</p>
-    </div>
-  </div>
-
-  <div class="ui bottom attached tab segment" data-tab="certifications">
-    <div class="segment-wrapper">
-      <!-- contenu Certifications -->
-      <h3 class="ui header">Certifications</h3>
-      <p>Placeholder Cert A<br>Placeholder Cert B</p>
-    </div>
-  </div>
-</section>
 
   <section id="education">
+    
     <div class="ui top attached tabular menu">
       <a class="active item" data-tab="education">Education</a>
       <a class="item" data-tab="languages">Languages</a>
       <a class="item" data-tab="certifications">Certifications</a>
     </div>
-    <div class="segment-wrapper">
       <div class="ui bottom attached active tab segment" data-tab="education">
         <h3 class="ui header">Education</h3>
         <p>Lorem University - Executive Program</p>
