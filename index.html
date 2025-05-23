@@ -271,6 +271,62 @@
   }
 }
 
+#experience {
+  background-color: #014421;
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 100%;
+}
+
+#experience,
+#experience p {
+  color: #C0C0C0;
+}
+#experience h2.ui.header {
+  color: #C0C0C0 !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+ 
+#experience .ui.segment {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #C0C0C0;
+  border-radius: 4px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+} 
+#experience .ui.button,
+#experience .ui.label {
+  background-color: #C0C0C0 !important;
+  color: #014421 !important;
+  border: none !important;
+}
+
+#experience .ui.button:hover,
+#experience .ui.segment:hover {
+  background: rgba(255,255,255,0.15) !important;
+}
+@keyframes text-shimmer {
+  0%   { background-position: -150% 0; }
+  100% { background-position: 150% 0; }
+}
+@media (max-width: 600px) {
+  #experience h2.ui.header,
+  #experience .ui.segment p {
+    animation-duration: 12s; 
+  }
+}
+#experience {
+  background-image: url('/assets/images/green-velvet-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-color: #1A472A !important;  
+}
 
 </style>
 </head>
