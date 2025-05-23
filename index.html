@@ -103,54 +103,7 @@
       color: #EBE1D7;
       border-radius: 0;
     }
-/*-----------------------*/
-/* Wrapper avec gap fixe */
-/*-----------------------*/
-.segment-wrapper {
-  margin-top: 1rem;               /* espace sous le menu */
-  height: calc(70vh - 1rem);      /* hauteur desktop */
-  overflow-y: auto;
-}
 
-/*------------------------------------*/
-/* Segments statiques, transition OK */
-/*------------------------------------*/
-.segment-wrapper .ui.tab.segment {
-  position: static !important;     /* fluidité du flux normal */
-  display: block !important;       /* override Semantic-UI display:none */
-  opacity: 0;
-  transition: opacity 0.4s ease;   /* vos transitions restent */
-}
-
-/*--------------------------------*/
-/* Afficher uniquement le segment */
-/* actif (Semantic-UI ajoute .active) */
-/*--------------------------------*/
-.segment-wrapper .ui.tab.segment.active {
-  opacity: 1;
-}
-
-/*--------------------------------*/
-/* Mobile : hauteur auto, pas de scroll */
-/*--------------------------------*/
-@media (max-width: 600px) {
-  .segment-wrapper {
-    height: auto !important;
-    overflow: visible !important;
-    margin-top: 0.5rem;
-  }
-  /* si votre menu <a> déborde */
-  #education .ui.top.attached.menu {
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-  #education .ui.top.attached.menu .item {
-    flex: none;
-  }
-}
-
-
-    
 #education .ui.menu .item[data-tab="education"].active {
   background-color: #2E486B !important;
 }
