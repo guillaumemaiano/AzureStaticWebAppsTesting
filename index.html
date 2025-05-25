@@ -349,6 +349,20 @@
     margin: 2rem 0;
   }
 }
+#experience .glass-card {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#experience .glass-card h3.ui.header,
+#experience .glass-card p {
+  color: #C0C0C0;
+}
 
 </style>
 </head>
@@ -382,6 +396,26 @@
       <h2 class="ui header">Experience</h2>
       <p>Lorem Company - Senior Architect<br>Ipsum Solutions - Product Strategist</p>
     </div>
+    <section id="experience">
+  <div class="ui container">
+    <h2 class="ui header">Experience</h2>
+    <div class="ui stackable two column grid">
+      <div class="column">
+        <div class="glass-card">
+          <h3 class="ui header">Senior Architect</h3>
+          <p>At Lorem Company, I led the design of high-availability systems.</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="glass-card">
+          <h3 class="ui header">Product Strategist</h3>
+          <p>At Ipsum Solutions, I defined roadmaps aligning engineering and business goals.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
   </section>
 
 <section id="education">
