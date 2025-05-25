@@ -1,0 +1,71 @@
+// 404.scss
+// 1) Vos variables de typo et couleurs pro
+$font-family-base: 'IBM Plex Sans', sans-serif !default;
+$text-color:      #EBE1D7 !default;
+$bg-header:       #1A1F26 !default;
+$accent:          #B87333 !default;
+
+// 2) Reset minimal pour la 404
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-base;
+  background: #0C1212;
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+}
+
+// 3) Header « OOPS »
+header {
+  background: $bg-header;
+  padding: 2rem;
+  text-align: center;
+  color: $text-color;
+  h1 { margin: 0.5rem 0; font-weight: 600; }
+  p  { opacity: 0.8; }
+}
+
+// 4) Loader bar sobre
+.steel.loaderbar {
+  background: rgba(255,255,255,0.1);
+  height: 4px;
+  position: relative;
+  overflow: hidden;
+  .lightball {
+    background: $accent;
+    width: 20px; height: 100%;
+    animation: loading 2s infinite ease-in-out;
+  }
+}
+@keyframes loading {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+// 5) Contenu centré
+.container.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1C262C;
+}
+.giphy-embed {
+  border-radius: 0.5rem;
+}
+
+// 6) Footer ultra-minimal
+footer {
+  background: $bg-header;
+  padding: 1rem 0;
+  text-align: center;
+  a {
+    color: $accent;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 500;
+  }
+}
