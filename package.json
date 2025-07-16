@@ -9,7 +9,7 @@
     "compile-sass": "sass scss:assets/css",
     "compile-typescript": "tsc && terser assets/js/custom.js -o assets/js/custom.min.js",
     "copy": "node scripts/copy.js",
-    "prepare-deploy": "shx cp -r assets build/ && shx cp routes.json build/"
+    "prepare-deploy": "shx cp -r assets build/"
   },
   "repository": {
     "type": "git",
