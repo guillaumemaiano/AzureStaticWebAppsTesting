@@ -18,10 +18,6 @@
       "allowedRoles": ["anonymous"]
     },
     {
-      "route": "/register",
-      "allowedRoles": ["*"]
-    },
-    {
       "route": "/profile/*",
       "allowedRoles": ["authenticated"]
     },
