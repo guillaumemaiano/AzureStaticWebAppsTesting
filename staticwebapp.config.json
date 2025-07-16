@@ -7,15 +7,15 @@
     },
     {
       "route": "/about",
-      "allowedRoles": ["*"]
+      "allowedRoles": ["anonymous"]
     },
     {
       "route": "/contact",
-      "allowedRoles": ["*"]
+      "allowedRoles": ["anonymous"]
     },
     {
       "route": "/login",
-      "allowedRoles": ["*"]
+      "allowedRoles": ["anonymous"]
     },
     {
       "route": "/register",
