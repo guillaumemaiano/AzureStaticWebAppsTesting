@@ -11,15 +11,26 @@
         "serve": "/404.html"
       },
       {
+        "commented-out": {
         "errorType": "Unauthenticated",
-        "statusCode": "302",
+        "statusCode": 302,
         "serve": "/login"
+        },
+        "reason": "shelving the admin area for now"
       }
     ],
+      "globalHeaders": {
+    "X-Frame-Options": "DENY",
+    "content-security-policy":  "frame-ancestors 'none'; default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none';base-uri 'self'",
+    "commented-out-content-security-policy": "default-src https:; script-src https:; style-src https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'"
+  },
+    "commented-out": {
     "defaultHeaders": {
       "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
     },
     "mimeTypes": {
         "custom": "text/html"
     }
+  }, "reason": "non-Azure Static Web Apps deployment"
   }
+  
