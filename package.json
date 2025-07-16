@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Basic package.json facilitates Azure deployment of static website",
   "main": "scripts.js",
+  "engines": {
+  "node": ">=22"
+  },
   "scripts": {
     "test": "echo \"No test needed for now\" && exit 1",
     "build": "npm run compile-typescript && npm run compile-sass && npm run copy && npm run prepare-deploy",
