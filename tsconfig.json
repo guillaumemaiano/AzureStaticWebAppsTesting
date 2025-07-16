@@ -1,17 +1,15 @@
 {
   "compilerOptions": {
-   "target": "esnext", // Use the latest ECMAScript version - 2024
-    //"module": "esnext", // Use the ES module system
-    "module": "system",
-    "sourceMap": true,
-    //"outDir": "assets/js",
-    "outFile": "assets/js/custom.js", // merge everythingz -- forces "module":"system"
-    "strict": true, // Enable all strict type-checking options
-    "moduleResolution": "node", // Use Node.js module resolution
-    "esModuleInterop": true, // Enable interoperability between CommonJS and ES modules
-    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
-    "forceConsistentCasingInFileNames": true, // Ensure consistent file naming
-    "skipLibCheck": true // Skip type checking of declaration files
+    "target": "ES2022",
+    "module": "esnext",
+    "outDir": "build/assets/js",
+    "rootDir": "typescript",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": ["typescript/**/*"]
 }
