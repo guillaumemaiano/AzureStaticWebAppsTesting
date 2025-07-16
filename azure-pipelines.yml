@@ -13,24 +13,26 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-   versionSpec: '8.x'
+   versionSpec: '22.x'
   displayName: 'Install Node.js'
 
 - script: npm install
   displayName: 'npm install'
 
-- script: npm install -g sass
+- script: npm install --savedev sass
   displayName: 'npm install sass'
 
 - script: sass scss:assets/css
   displayName: 'npm compile scss'
 
-- script: npm install -g typescript
+- script: npm install --save-dev typescript
   displayName: 'npm install typescript'
 
+- script: npm install --save-dev terser
+  displayName: 'npm install terser'
+
 # TSC should pick the tsconfig options up
-- script: tsc
-  displayName: 'npm compile typescript'
+-  script: tsc  && terser assets/js/custom.js -o assets/js/custom.min.js  displayName: 'npm compile typescript'
 
 - task: ArchiveFiles@2
   inputs:
