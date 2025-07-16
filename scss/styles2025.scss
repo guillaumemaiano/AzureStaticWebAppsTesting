@@ -1,0 +1,136 @@
+// Variables
+$bg-dark:       #0C1212;
+$text-light:    #EBE1D7;
+$copper:        #B87333;
+$emerald:       #1A472A;
+$silver-text:   #C0C0C0;
+$overlay-bg:    rgba(12,18,18,0.6);
+$glass-bg:      rgba(255,255,255,0.12);
+$glass-border:  rgba(255,255,255,0.4);
+$break-mobile:  600px;
+
+// Global
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: $bg-dark;
+  color: $text-light;
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+section {
+  min-height: 100vh;
+  padding: 4rem;
+  scroll-snap-align: start;
+}
+
+// Hero
+#hero {
+  background: url('/assets/images/hex_dark_background.png') no-repeat center center !important;
+  background-size: cover !important;
+  position: relative;
+  .overlay {
+    background: $overlay-bg;
+    padding: 2rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    max-width: 600px;
+    color: $text-light;
+  }
+  .hero-download {
+    background-color: $copper !important;
+    color: $bg-dark !important;
+    border: none !important;
+    box-shadow: 0 0 10px rgba(184,115,51,0.7);
+    transition: background 0.3s ease;
+    &:hover { background-color: #D4AF37 !important; }
+  }
+}
+
+// Dot navigation
+.dot-nav {
+  position: fixed; right: 20px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 10px;
+  z-index: 1000;
+  a {
+    width:12px; height:12px; background:#777;
+    border-radius:50%; display:inline-block;
+    transition:background 0.3s;
+    &.active, &:hover { background: $text-light; }
+  }
+}
+
+// Experience
+#experience {
+  background: url('/assets/images/green-velvet-bg.png') center/cover no-repeat;
+  position: relative; overflow: hidden;
+  h2.ui.header, p { 
+    color: $silver-text;
+    // shimmer omitted for brevity...
+  }
+  .glass-card {
+    background: $glass-bg;
+    border: 1px solid $glass-border;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    padding: 1.5rem; margin-bottom:1.5rem;
+    h3, p { color: $silver-text; }
+  }
+}
+
+// Education
+#education {
+  background: #1A1F26;
+  padding-top:2rem;
+  .ui.top.attached.tabular.menu { background:#0C1212; border-bottom:none; z-index:2; }
+  .ui.menu .item { color:$text-light; border-radius:0; }
+  .ui.bottom.attached.tab.segment {
+    margin-top:1rem;
+    height: calc(70vh - 1rem);
+    overflow-y: auto;
+    @media (max-width: $break-mobile) {
+      height:auto !important; overflow:visible !important; margin-top:.5rem;
+    }
+  }
+}
+
+// Projects
+#projects {
+  min-height:200vh;
+  .ui.container {
+    height:100vh; display:flex; flex-direction:column; justify-content:center;
+    @media (max-width: $break-mobile) { height:auto; }
+  }
+  .proj-content {
+    display:flex !important; flex:1; max-height:90%; overflow:hidden;
+    justify-content:space-between; align-items:center;
+    > div { width:45%; height:90%; box-sizing:border-box; }
+    @media (max-width: $break-mobile) {
+      flex-direction:column !important;
+      > div { width:80%; height:auto; margin-bottom:1rem; }
+    }
+  }
+  .proj-section { position:absolute; top:0; left:0; width:100%; height:100%; }
+  .underlay { background:#333; }
+  .red-fiber { /* clip-path logic */ }
+}
+
+// Contact
+#contact {
+  position:relative;
+  background: linear-gradient(135deg,#16202B 0%,#0D1318 100%);
+  &::before { content:""; position:absolute; top:0; left:0; width:100%; height:4px; background:$copper; }
+  &::after { /* particles */ }
+  .contact-box { /* glass styling */ }
+}
+
+// Avoid annoying people who said "I don't like animations"
+@media (prefers-reduced-motion) {
+  * { animation: none !important; transition: none !important; }
+}
