@@ -15,11 +15,11 @@
     "copy-html": "node scripts/copy.js"
   },
   "devDependencies": {
-    "fs-extra": "^11.3.0",
-    "glob": "^11.0.3",
-    "sass": "^1.89.2",
+    "fs-extra": "^11.3.3",
+    "glob": "^13.0.0",
+    "sass": "^1.97.3",
     "shx": "^0.4.0",
-    "terser": "^5.43.1",
-    "typescript": "^5.8.3"
+    "terser": "^5.46.0",
+    "typescript": "^5.9.3"
   }
 }
